@@ -3,6 +3,7 @@ package com.mobpvp.site.model.profile.data;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.mobpvp.site.model.profile.ProfileModel;
+import com.mobpvp.site.util.ColorUtil;
 import com.mobpvp.site.util.TimeUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,6 @@ public class CommentModel {
     public static final Comparator<CommentModel> COMPARATOR
             = (o1, o2) -> (int) (o2.getAddedAt() - o1.getAddedAt());
 
-    @SerializedName("_id")
     private final UUID uuid;
     private final UUID profile;
     private final UUID author;
@@ -29,13 +29,13 @@ public class CommentModel {
 
     public CommentModel(JsonObject object) {
         this(
-                UUID.fromString(object.get("_id").getAsString()),
-                UUID.fromString(object.get("profile").getAsString()),
+                UUID.fromString(object.get("uuid").getAsString()),
+                UUID.fromString(object.get("profileId").getAsString()),
                 UUID.fromString(object.get("author").getAsString()),
-                object.get("comment").getAsString(),
+                object.get("content").getAsString(),
                 object.get("addedAt").getAsLong(),
                 object.get("authorName").getAsString(),
-                object.get("authorWebColor").getAsString()
+                ColorUtil.getHexFromMinecraft(object.get("authorColor").getAsString())
         );
     }
 

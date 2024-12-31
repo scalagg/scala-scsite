@@ -160,10 +160,13 @@ public class ThreadController {
         JsonObject body = new JsonObject();
 
         body.addProperty("id", id);
-        body.addProperty("forumId", forumId);
+        body.addProperty("forum", forumId);
         body.addProperty("title", title);
         body.addProperty("body", sanitizedContent);
         body.addProperty("author", profile.getUuid().toString());
+        body.addProperty("createdAt", System.currentTimeMillis());
+        body.addProperty("pinned", false);
+        body.addProperty("locked", false);
 
         response = RequestHandler.post("forum/thread", body);
         if (!response.wasSuccessful()) {

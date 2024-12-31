@@ -62,6 +62,7 @@ public class ProfileController {
 
         return view;
     }
+
     @RequestMapping({"/user/{name}/notes", "/u/{name}/notes"})
     public ModelAndView notes(HttpServletRequest request,
                              @PathVariable("name") String name,
@@ -83,6 +84,29 @@ public class ProfileController {
 
         return view;
     }
+
+    @RequestMapping({"/user/{name}/anticheat", "/u/{name}/anticheat"})
+    public ModelAndView lumosLogs(HttpServletRequest request,
+                              @PathVariable("name") String name,
+                              @RequestParam(value = "page", required = false) Integer page) {
+        Tuple<ProfileModel, ModelAndView> tuple
+                = displayPage(request, name, "anticheat", "website.anticheat.details");
+
+        ProfileModel profile = tuple.key();
+        ModelAndView view = tuple.value();
+        if (profile == null)
+            return view;
+
+        new ViewPaginationModel<>(
+                page == null ? 1 : page, 10, profile.getNotes(), "antiCheatLogs"
+        ).applyTo(view, String.format(
+                "/u/%s/anticheat?page={page}",
+                profile.getName()
+        ));
+
+        return view;
+    }
+
     @RequestMapping({"/user/{name}/punishments", "/u/{name}/punishments"})
     public ModelAndView punishments(HttpServletRequest request,
                              @PathVariable("name") String name,
@@ -131,9 +155,9 @@ public class ProfileController {
         }
 
         JsonObject body = new JsonObject();
-        body.addProperty("comment", comment);
+        body.addProperty("content", comment);
         body.addProperty("author", profile.getUuid().toString());
-        body.addProperty("profile", targetProfile.getUuid().toString());
+        body.addProperty("profileId", targetProfile.getUuid().toString());
 
         RequestResponse response = RequestHandler.post("forum/account/comment", body);
 
@@ -235,6 +259,7 @@ public class ProfileController {
                 new NavItem("General", "/u/" + profile.getName()),
                 new NavItem("Forums", "/u/" + profile.getName() + "/forums"),
                 new NavItem("Logs", "/u/" + profile.getName() + "/logs", "website.view.logs"),
+                new NavItem("Lumos", "/u/" + profile.getName() + "/anticheat", "website.anticheat.details"),
                 new NavItem("Notes", "/u/" + profile.getName() + "/notes", "website.view.notes"),
                 new NavItem("Grants", "/u/" + profile.getName() + "/grants", "website.view.grants"),
                 new NavItem("Punishments", "/u/" + profile.getName() + "/punishments", "website.view.punishments")

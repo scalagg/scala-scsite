@@ -62,7 +62,7 @@ public class PunishmentModel {
         this.server = object.get("addedOn").getAsString();
 
         if (object.get("removedAt").getAsLong() != -1) {
-            this.removed = object.get("removedAt").getAsLong() != -1;
+            this.removed = true;
             this.removedBy = object.get("removedBy").getAsString();
             this.removedAt = object.get("removedAt").getAsLong();
             this.removedReason = object.get("removedReason").getAsString();
@@ -73,14 +73,18 @@ public class PunishmentModel {
             this.removedReason = "N/A";
         }
 
-        if (object.has("punishedByName"))
-            this.punishedByName = object.get("punishedByName").getAsString();
-        else this.punishedByName = UUIDCache.getName(UUID.fromString(punishedBy));
+        if (UUID.fromString(punishedBy).getMostSignificantBits() == 0 && UUID.fromString(punishedBy).getLeastSignificantBits() == 0) {
+            this.punishedByName = "Console";
+            this.punishedByWebColor = "#cc0000";
+        } else {
+            if (object.has("punishedByName"))
+                this.punishedByName = object.get("punishedByName").getAsString();
+            else this.punishedByName = UUIDCache.getName(UUID.fromString(punishedBy));
 
-        if (object.has("punishedByWebColor"))
-            this.punishedByWebColor = object.get("punishedByWebColor").getAsString();
-        else this.punishedByWebColor = "#212529";
-
+            if (object.has("punishedByWebColor"))
+                this.punishedByWebColor = object.get("punishedByWebColor").getAsString();
+            else this.punishedByWebColor = "#212529";
+        }
 
         if (object.has("removerByName"))
             this.removerByName = object.get("removerByName").getAsString();
@@ -118,7 +122,7 @@ public class PunishmentModel {
     }
 
     public long getEnd() {
-        return duration == -1 ? -1 : punishedAt + duration;
+        return duration == Long.MAX_VALUE ? -1 : punishedAt + duration;
     }
 
     public boolean isActive() {

@@ -67,11 +67,11 @@ public class ProfileModel extends UUIDHolder {
 
         this.rank = new RankModel(object.get("rank").getAsJsonObject());
 
-        this.activeBan = object.has("activeBan")
+        this.activeBan = object.has("activeBan") && !object.get("activeBan").isJsonNull()
                 ? new PunishmentModel(object.get("activeBan").getAsJsonObject())
                 : null;
 
-        this.activeMute = object.has("activeMute")
+        this.activeMute = object.has("activeMute") && !object.get("activeMute").isJsonNull()
                 ? new PunishmentModel(object.get("activeMute").getAsJsonObject())
                 : null;
 
@@ -116,28 +116,27 @@ public class ProfileModel extends UUIDHolder {
         this.trusted = object.has("isTrusted")
                 && object.get("isTrusted").getAsBoolean();
 
-        if (object.has("comments")
-                && object.has("threads")
-                && object.has("friends")
-                && object.has("stats"))
-            loadProfileData(object);
-    }
+        if (object.has("comments") && !object.get("comments").isJsonNull()) {
+            for (JsonElement element : object.get("comments").getAsJsonArray())
+                comments.add(new CommentModel(element.getAsJsonObject()));
 
-    private void loadProfileData(JsonObject object) {
-        for (JsonElement element : object.get("stats").getAsJsonArray())
-            stats.add(new StatsModel(element.getAsJsonObject()));
+            comments.sort(CommentModel.COMPARATOR);
+        }
 
-        for (JsonElement element : object.get("threads").getAsJsonArray())
-            threads.add(new ForumThread(element.getAsJsonObject()));
+        if (object.has("threads") && !object.get("threads").isJsonNull()) {
+            for (JsonElement element : object.get("threads").getAsJsonArray())
+                threads.add(new ForumThread(element.getAsJsonObject()));
+        }
 
-        for (JsonElement element : object.get("friends").getAsJsonArray())
-            friends.add(new FriendModel(element.getAsJsonObject()));
+        if (object.has("friends") && !object.get("friends").isJsonNull()) {
+            for (JsonElement element : object.get("friends").getAsJsonArray())
+                friends.add(new FriendModel(element.getAsJsonObject()));
+        }
 
-        for (JsonElement element : object.get("comments").getAsJsonArray())
-            comments.add(new CommentModel(element.getAsJsonObject()));
-
-
-        comments.sort(CommentModel.COMPARATOR);
+        if (object.has("stats") && !object.get("stats").isJsonNull()) {
+            for (JsonElement element : object.get("stats").getAsJsonArray())
+                stats.add(new StatsModel(element.getAsJsonObject()));
+        }
     }
 
 
@@ -242,13 +241,6 @@ public class ProfileModel extends UUIDHolder {
                 return true;
 
         return false;
-    }
-
-    public PunishmentModel getActiveBan() {
-        if (activeBan == null || !activeBan.isActive())
-            return null;
-
-        return activeBan;
     }
 
     public PunishmentModel getActiveMute() {

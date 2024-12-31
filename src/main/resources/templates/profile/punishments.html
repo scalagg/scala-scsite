@@ -13,7 +13,7 @@
                     th:if="${!punishments.isEmpty()}"
                     th:each="punishment: ${punishments}">
                     <div class="avatar xm log">
-                        <img th:src="${'https://mc-heads.net/body/' + punishment.getPunishedByName()}"/>
+                        <img th:src="${'https://skins.mcstats.com/skull/' + (punishment.getPunishedBy().equals('00000000-0000-0000-0000-000000000000') ? 'f78a4d8d-d51b-4b39-98a3-230f2de0c670' : punishment.getPunishedBy())}"/>
                     </div>
                     <!--/*@thymesVar id="punishment" type="gg.solara.site.model.punishment.PunishmentModel"*/-->
                     <div class="ms-lg-3 me-auto">

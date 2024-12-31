@@ -35,7 +35,7 @@
                         th:text="${profile.getLastServer()}"></span>-->
                 </div>
 
-                <div th:if="${!profile.isOnline() && profile.getActiveBan() != null}" th:with="ban=${profile.getActiveBan()}">
+                <div th:if="${profile.getActiveBan() != null}" th:with="ban=${profile.getActiveBan()}">
                     BANNED
                 </div>
 

@@ -16,7 +16,7 @@
         <div id="news-collection" th:if="${latestAnnouncement != null}">
             <div class="news-post large">
                 <a th:href="${'/thread/' + latestAnnouncement.getId()}" class="news-image">
-                    <img th:src="${!latestAnnouncement.getImageUrl().isEmpty() ? latestAnnouncement.getImageUrl() : 'https://assets.originrealms.com/cdn-cgi/image/format=webp,quality=90,fit=scale-down,width=1920/2022/03/Badlands_Blog.jpg'}">
+                    <img th:src="${!latestAnnouncement.getImageUrl().isEmpty() ? latestAnnouncement.getImageUrl() : 'https://s6.imgcdn.dev/oW1Kq.webp?width=1920'}">
                 </a>
 
                 <div class="news-text">
@@ -46,7 +46,7 @@
         <div id="news-collection" class="small two" th:if="${announcements != null && !announcements.isEmpty()}">
             <div class="news-post" th:each="announcement: ${announcements}">
                 <a th:href="${'/thread/' + announcement.getId()}" class="news-image">
-                    <img th:src="${!announcement.getImageUrl().isEmpty() ? announcement.getImageUrl() : 'https://assets.originrealms.com/cdn-cgi/image/format=webp,quality=90,fit=scale-down,width=1920/2022/03/Badlands_Blog.jpg'}">
+                    <img th:src="${!announcement.getImageUrl().isEmpty() ? announcement.getImageUrl() : 'https://s6.imgcdn.dev/oW1Kq.webp?width=1920'}">
                 </a>
                 <div class="news-text">
                     <a th:href="${'/thread/' + announcement.getId()}" class="news-title"

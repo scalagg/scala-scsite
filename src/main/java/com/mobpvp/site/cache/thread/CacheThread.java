@@ -21,7 +21,7 @@ public class CacheThread extends SiteThread {
             long delay = cache.getDelay();
 
             if (lastCache + delay <= System.currentTimeMillis()) {
-                cache.execute();
+                cache.  execute();
                 cache.setLastCache(System.currentTimeMillis());
             }
         }

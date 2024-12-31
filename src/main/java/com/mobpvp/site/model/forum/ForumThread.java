@@ -8,6 +8,7 @@ import com.mobpvp.site.cache.impl.ReplyCache;
 import com.mobpvp.site.model.profile.ProfileModel;
 import com.mobpvp.site.model.replies.ReplyModel;
 import com.mobpvp.site.request.RequestResponse;
+import com.mobpvp.site.util.ColorUtil;
 import com.mobpvp.site.util.TimeUtils;
 import lombok.Data;
 
@@ -59,10 +60,10 @@ public class ForumThread {
 
         this.author = UUID.fromString(object.get("author").getAsString());
         this.authorName = object.get("authorName").getAsString();
-        this.authorWebColor = object.get("authorWebColor").getAsString();
+        this.authorWebColor = ColorUtil.getHexFromMinecraft(object.get("authorColor").getAsString());
         this.createdAt = object.get("createdAt").getAsLong();
 
-        if (object.has("lastEditedBy"))
+        if (object.has("lastEditedBy") && !object.get("lastEditedBy").isJsonNull())
             this.lastEditedBy = UUID.fromString(object.get("lastEditedBy").getAsString());
 
         if (object.has("forumPermission"))
@@ -76,7 +77,7 @@ public class ForumThread {
         this.imageUrl = object.has("imageUrl")
                 ? object.get("imageUrl").getAsString() : "";
 
-        if (object.has("parentThreadId"))
+        if (object.has("parentThreadId") && !object.get("parentThreadId").isJsonNull())
             this.parentThreadId = object.get("parentThreadId").getAsString();
 
         if (object.has("seenBy"))

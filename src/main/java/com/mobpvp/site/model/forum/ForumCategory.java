@@ -21,12 +21,14 @@ public class ForumCategory {
     private final List<ForumModel> forums = new ArrayList<>();
 
     public ForumCategory(JsonObject object) {
-        this.id = object.get("id").getAsString();
-        this.name = object.get("name").getAsString();
-        this.weight = object.get("weight").getAsInt();
+        JsonObject categoryObject = object.get("category").getAsJsonObject();
 
-        if (object.has("permission"))
-            this.permission = object.get("permission").getAsString();
+        this.id = categoryObject.get("id").getAsString();
+        this.name = categoryObject.get("name").getAsString();
+        this.weight = categoryObject.get("weight").getAsInt();
+
+        if (categoryObject.has("permission"))
+            this.permission = categoryObject.get("permission").getAsString();
 
         if (object.has("forums"))
             object.get("forums").getAsJsonArray().forEach(element ->

@@ -9,7 +9,7 @@
 <body>
 <div layout:fragment="content">
     <div id="content" class="forum-wrap"
-         th:with="admin=${sessionProfile != null && sessionProfile.hasPermission('website.forum.category.manage')}">
+             th:with="admin=${sessionProfile != null && sessionProfile.hasPermission('website.forum.category.manage')}">
         <div id="section-above">
             <div class="alert alert-light breadcrumb-bar" role="alert">
                 <nav aria-label="breadcrumb">

@@ -106,7 +106,7 @@ public class ForumsController {
         }
 
         JsonObject body = new JsonObject();
-        body.addProperty("categoryId", id);
+        body.addProperty("category", id);
         body.addProperty("id", StringUtil.generateId(5));
         body.addProperty("name", name);
         body.addProperty("weight", weight);

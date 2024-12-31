@@ -3,6 +3,7 @@ package com.mobpvp.site.model.staff;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mobpvp.site.cache.impl.ProfileCache;
+import com.mobpvp.site.util.ColorUtil;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class StaffRankModel {
         this.uuid = UUID.fromString(object.get("uuid").getAsString());
         this.name = object.get("name").getAsString();
         this.weight = object.get("weight").getAsInt();
-        this.webColor = object.get("webColor").getAsString();
+        this.webColor = ColorUtil.getHexFromMinecraft(object.get("color").getAsString());
 
         for (JsonElement element : object.get("members").getAsJsonArray()) {
             StaffMember member = new StaffMember(element.getAsJsonObject());
@@ -30,8 +31,6 @@ public class StaffRankModel {
             if (members.contains(member)) {
                 continue;
             }
-
-
 
             members.add(member);
         }

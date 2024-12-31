@@ -2,6 +2,7 @@ package com.mobpvp.site.account;
 
 import com.mobpvp.site.model.profile.ProfileModel;
 import com.mobpvp.site.model.account.ForumAccountModel;
+import com.mobpvp.site.model.punishment.PunishmentModel;
 import com.mobpvp.site.request.RequestHandler;
 import com.mobpvp.site.request.RequestResponse;
 import org.springframework.security.core.GrantedAuthority;
