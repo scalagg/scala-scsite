@@ -24,7 +24,7 @@ public class GlobalControllerAdvice {
             new NavItem("Leaderboard", "/leaderboard"),
             new NavItem("Support", "/support"),
             new NavItem("Staff", "/staff"),
-            new NavItem("Store", "https://store.mobpvp.com")
+            new NavItem("Store", "https://store.solara.gg")
     );
 
     @ModelAttribute

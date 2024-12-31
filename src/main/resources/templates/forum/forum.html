@@ -111,7 +111,7 @@
             <ol class="list-group list-group-flush" th:if="${!threads.isEmpty()}">
                 <li class="list-group-item d-flex justify-content-between align-items-center forum-list-group"
                     th:each="thread: ${threads}" th:styleappend="${thread.isPinned() ? 'border: 1px solid #7b4e4e !important' : ''}">
-                    <!--/*@thymesVar id="thread" type="com.mobpvp.site.model.forum.ForumThread"*/-->
+                    <!--/*@thymesVar id="thread" type="gg.solara.site.model.forum.ForumThread"*/-->
 
                     <div class="node-icon">
                         <div class="avatar xm">
