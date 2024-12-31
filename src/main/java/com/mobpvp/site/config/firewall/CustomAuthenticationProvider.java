@@ -33,19 +33,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         UserDetails user = accountDetailsService.loadUserByUsername(username);
 
-
         if (user == null) {
             throw new BadCredentialsException("Invalid username or password");
         }
+
         RequestResponse response = RequestHandler.get("forum/account/login/%s?password=%s",
                 username, URLEncoder.encode(password, StandardCharsets.UTF_8)
         );
 
         if (!response.wasSuccessful())
             throw new BadCredentialsException("Invalid username or password");
-        if (!response.asObject().has("passwordCorrect") || !response.asObject().get("passwordCorrect").getAsBoolean()) {
-            throw new BadCredentialsException("Invalid username or password");
-        }
+            // returns 400 if its a bad password
+        //if (!response.asObject().has("passwordCorrect") || !response.asObject().get("passwordCorrect").getAsBoolean()) {
+        //    throw new BadCredentialsException("Invalid username or password");
+        //}
 
         return new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());
     }

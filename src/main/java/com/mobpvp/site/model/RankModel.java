@@ -2,6 +2,7 @@ package com.mobpvp.site.model;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mobpvp.site.util.ColorUtil;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -26,10 +27,10 @@ public class RankModel {
         this.name = object.get("name").getAsString();
         this.prefix = object.get("prefix").getAsString();
         this.color = object.get("color").getAsString();
-        this.chatColor	 = object.get("chatColor").getAsString();
+        this.chatColor = "&c"; // TODO: Implement
         this.weight = object.get("weight").getAsInt();
 
-        this.webColor = object.get("webColor").getAsString();
+        this.webColor = ColorUtil.getHexFromMinecraft(this.color);
 
         for (JsonElement element : object.get("permissions").getAsJsonArray())
             permissions.add(element.getAsString());

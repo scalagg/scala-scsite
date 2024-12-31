@@ -1,7 +1,7 @@
 {
-  "host": "mobpvp",
-  "port": 6379,
-  "authEnabled": false,
-  "authPassword": "password",
+  "host": "38.114.240.186",
+  "port": 4322,
+  "authEnabled": true,
+  "authPassword": "59U20W3h6PwNidHcjf2F11oZjgDpHH1AvAKw5",
   "dbId": 0
 }
