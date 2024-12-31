@@ -29,7 +29,7 @@ public class AccountDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
 
         response = RequestHandler.get(
-                "profile/%s?webResolved=true&includePermissions=true",
+               "profile/%s?webResolved=true&includePermissions=true",
                 account.getUuid().toString()
         );
 

@@ -41,25 +41,37 @@ public class PunishmentModel {
     private final String removerByWebColor;
 
     public PunishmentModel(JsonObject object) {
-        this.id = UUID.fromString(object.get("id").getAsString());
-        this.uuid = UUID.fromString(object.get("uuid").getAsString());
-        this.type = PunishmentType.valueOf(object.get("punishmentType").getAsString());
+        this.id = UUID.fromString(object.get("uuid").getAsString());
+        this.uuid = UUID.fromString(object.get("target").getAsString());
+        this.type = PunishmentType.valueOf(object.get("category").getAsString());
 
         this.duration = object.get("duration").getAsLong();
 
-        this.punishedBy = object.get("punishedBy").getAsString();
-        this.punishedAt = object.get("punishedAt").getAsLong();
+        if (object.get("addedBy").isJsonNull()) {
+            this.punishedBy = "00000000-0000-0000-0000-000000000000";
+        } else {
+            this.punishedBy = object.get("addedBy").getAsString();
+        }
 
-        this.punishedReason = object.get("punishedReason").getAsString();
+        this.punishedAt = object.get("addedAt").getAsLong();
+
+        this.punishedReason = object.get("addedReason").getAsString();
         this.template = (object.has("template") ? object.get("template").getAsString() : null);
 
-        this.serverType = object.get("punishedServerType").getAsString();
-        this.server = object.get("punishedServer").getAsString();
+        this.serverType = "UNKNOWN SERVER TYPE"; // TODO: do we really need this? object.get("punishedServerType").getAsString();
+        this.server = object.get("addedOn").getAsString();
 
-        this.removed = object.get("removed").getAsBoolean();
-        this.removedBy = object.get("removedBy").getAsString();
-        this.removedAt = object.get("removedAt").getAsLong();
-        this.removedReason = object.get("removedReason").getAsString();
+        if (object.get("removedAt").getAsLong() != -1) {
+            this.removed = object.get("removedAt").getAsLong() != -1;
+            this.removedBy = object.get("removedBy").getAsString();
+            this.removedAt = object.get("removedAt").getAsLong();
+            this.removedReason = object.get("removedReason").getAsString();
+        } else {
+            this.removed = false;
+            this.removedBy = "N/A";
+            this.removedAt = -1;
+            this.removedReason = "N/A";
+        }
 
         if (object.has("punishedByName"))
             this.punishedByName = object.get("punishedByName").getAsString();

@@ -1,5 +1,6 @@
 package com.mobpvp.site.model.profile;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mobpvp.site.badge.BadgeModel;
@@ -48,22 +49,17 @@ public class ProfileModel extends UUIDHolder {
     private final boolean trusted;
 
     public ProfileModel(JsonObject object) {
-        this.uuid = UUID.fromString(object.get("uuid").getAsString());
+        this.uuid = UUID.fromString(object.get("uniqueId").getAsString());
         this.name = object.get("name").getAsString();
-        this.firstJoin = object.get("firstLogin").getAsLong();
+        this.firstJoin = object.getAsJsonObject("metadata").getAsJsonObject("first-connection").get("value").getAsLong();
 
-        this.lastSeen = object.has("lastSeen")
-                ? object.get("lastSeen").getAsLong()
-                : -1;
+        this.lastSeen = object.getAsJsonObject("metadata").getAsJsonObject("last-connection").get("value").getAsLong();
 
         this.playTime = object.has("playTime")
                 ? object.get("playTime").getAsLong()
                 : -1;
 
-        this.lastServer = object.has("lastServer")
-                ? object.get("lastServer").getAsString()
-                : "N/A";
-
+        this.lastServer = object.getAsJsonObject("metadata").getAsJsonObject("last-connected-server-id").get("value").getAsString();
 //        this.currentServer = object.has("currentServer")
 //                ? object.get("currentServer").getAsString()
 //                : null;
@@ -80,11 +76,13 @@ public class ProfileModel extends UUIDHolder {
                 : null;
 
         if (object.has("effectivePermissions")) {
-            JsonObject jsonObject = object.get("effectivePermissions").getAsJsonObject();
-            for (String permission : jsonObject.keySet()) {
-                if (!jsonObject.get(permission).getAsString().equals("true"))
-                    continue;
+            JsonArray jsonArray = object.get("effectivePermissions").getAsJsonArray();
+            for (JsonElement jsonElement : jsonArray) {
+                String permission = jsonElement.getAsString();
+                //if (!jsonObject.get(permission).getAsString().equals("true"))
+                //    continue;
 
+                // TODO: tf this bro on gangy
                 this.permissions.put(permission, true);
             }
         }
@@ -108,7 +106,7 @@ public class ProfileModel extends UUIDHolder {
 //            }
 
 
-        if (object.has("webSettings")) {
+        if (object.has("webSettings") && !object.get("webSettings").isJsonNull()) {
             JsonObject settingsObject = object.get("webSettings").getAsJsonObject();
             settingsObject.keySet().forEach(key -> settings.put(
                     key, settingsObject.get(key).getAsString()
