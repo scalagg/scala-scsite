@@ -14,7 +14,7 @@ public class QuestionSetRegistry {
     public static final QuestionSet STAFF_APPLICATION = new QuestionSet()
             .add("How old are you? (Must be 15+)", 1)
             .add("Do you have any previous staff experience?", 3)
-            .add("Why would you like to become a staff member at MobPvP?", 3)
+            .add("Why would you like to become a staff member at Solara?", 3)
             .add("What makes you stand out from other applicants?", 3)
             .add("Can any current staff members vouch for you?: (optional)", 2)
             .add("How active can you be?", 3)
@@ -55,6 +55,6 @@ public class QuestionSetRegistry {
             .add("Provide a link to your platform", 1)
             .add("How many videos can you upload per month?", 1)
             .add("How many times can you stream per month?", 1)
-            .add("Link two or more videos on MobPvP", 2)
-            .add("Do you agree to follow the MobPvP rules?", 1);
+            .add("Link two or more videos on Solara", 2)
+            .add("Do you agree to follow the Solara rules?", 1);
 }
