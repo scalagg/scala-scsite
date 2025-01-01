@@ -3,6 +3,7 @@ package com.mobpvp.site.controller.profile;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mobpvp.site.SiteApplication;
+import com.mobpvp.site.model.grants.GrantsModel;
 import com.mobpvp.site.model.punishment.PunishmentModel;
 import com.mobpvp.site.util.ErrorUtil;
 import com.mobpvp.site.util.PopupUtil;
@@ -101,6 +102,28 @@ public class ProfileController {
                 page == null ? 1 : page, 10, profile.getNotes(), "antiCheatLogs"
         ).applyTo(view, String.format(
                 "/u/%s/anticheat?page={page}",
+                profile.getName()
+        ));
+
+        return view;
+    }
+
+    @RequestMapping({"/user/{name}/grants", "/u/{name}/grants"})
+    public ModelAndView grants(HttpServletRequest request,
+                               @PathVariable("name") String name,
+                               @RequestParam(value = "page", required = false) Integer page) {
+        Tuple<ProfileModel, ModelAndView> tuple
+                = displayPage(request, name, "grants", "website.view.grants");
+
+        ProfileModel profile = tuple.key();
+        ModelAndView view = tuple.value();
+        if (profile == null)
+            return view;
+
+        new ViewPaginationModel<>(
+                page == null ? 1 : page, 10, profile.getGrants(), "grants"
+        ).applyTo(view, String.format(
+                "/u/%s/grants?page={page}",
                 profile.getName()
         ));
 
@@ -217,7 +240,7 @@ public class ProfileController {
 
             ProfileModel profile = new ProfileModel(response.asObject());
 
-            response =RequestHandler.get(
+            response = RequestHandler.get(
                     "punishment/profile/%s?webResolved=true",
                     uuid
             );
@@ -228,6 +251,16 @@ public class ProfileController {
             }
 
             profile.getPunishments().sort((o1, o2) -> Long.compare(o2.getPunishedAt(), o1.getPunishedAt()));
+
+            response = RequestHandler.get("grant/profile/%s?webResolved=true",
+                    uuid);
+            profile.getGrants().clear();
+
+            for (JsonElement element : response.asArray()) {
+                profile.getGrants().add(new GrantsModel(element.getAsJsonObject()));
+            }
+            profile.getGrants().sort((o1, o2) -> Long.compare(o2.getAddedAt(), o1.getAddedAt()));
+
             CACHE.update(profile);
 
             return profile;

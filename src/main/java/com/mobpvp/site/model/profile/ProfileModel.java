@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.mobpvp.site.badge.BadgeModel;
 import com.mobpvp.site.model.RankModel;
 import com.mobpvp.site.model.forum.ForumThread;
+import com.mobpvp.site.model.grants.GrantsModel;
 import com.mobpvp.site.model.profile.data.*;
 import com.mobpvp.site.model.profile.log.LogModel;
 import com.mobpvp.site.model.profile.log.Note;
@@ -42,6 +43,7 @@ public class ProfileModel extends UUIDHolder {
 
     private final List<LogModel> logs = new ArrayList<>();
     private final List<PunishmentModel> punishments = new ArrayList<>();
+    private final List<GrantsModel> grants = new ArrayList<>();
     private final List<Note> notes = new ArrayList<>();
     private final List<BadgeModel> badges = new ArrayList<>();
 

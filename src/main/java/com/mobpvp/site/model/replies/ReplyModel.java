@@ -3,6 +3,7 @@ package com.mobpvp.site.model.replies;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mobpvp.site.model.profile.ProfileModel;
+import com.mobpvp.site.util.ColorUtil;
 import com.mobpvp.site.util.TimeUtils;
 import com.mobpvp.site.util.uuid.UUIDCache;
 import com.mobpvp.site.util.uuid.UUIDHolder;
@@ -43,17 +44,17 @@ public class ReplyModel extends UUIDHolder {
         this.thread = object.get("thread").getAsString();
         this.comment = object.get("comment").getAsString();
         this.createdAt = object.get("createdAt").getAsLong();
-        this.authorWebColor = object.get("authorWebColor").getAsString();
+        this.authorWebColor = ColorUtil.getHexFromMinecraft(object.get("authorColor").getAsString());
 
-        if (object.has("parentReply"))
-            this.parentReply = UUID.fromString(object.get("parentReply").getAsString());
+        if (object.has("parentReplyId") && !object.get("parentReplyId").isJsonNull())
+            this.parentReply = UUID.fromString(object.get("parentReplyId").getAsString());
 
         if (object.has("replies")) {
             for (JsonElement element : object.get("replies").getAsJsonArray())
                 replies.add(new ReplyModel(element.getAsJsonObject()));
         }
 
-        if (object.has("lastEditedAt"))
+        if (object.has("lastEditedAt") && object.get("lastEditedAt").getAsLong() != 0)
             this.lastEditedAt = object.get("lastEditedAt").getAsLong();
 
         this.allSubReplies = fetchSubReplies(1);

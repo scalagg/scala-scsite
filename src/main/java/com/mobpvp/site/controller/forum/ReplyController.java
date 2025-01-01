@@ -53,11 +53,11 @@ public class ReplyController {
         UUID id = UUID.randomUUID();
         JsonObject body = new JsonObject();
 
-        body.addProperty("id", id.toString());
+        body.addProperty("uuid", id.toString());
         body.addProperty("comment", content);
         body.addProperty("author", profile.getUuid().toString());
         if(replyId != null)
-            body.addProperty("replyId", replyId);
+            body.addProperty("parentReplyId", replyId);
 
         response = RequestHandler.post(
                 "forum/replies/%s",
