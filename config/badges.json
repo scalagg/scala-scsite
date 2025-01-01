@@ -5,14 +5,14 @@
       "name": "Developer",
       "description": "This user is a developer",
       "icon": "developer.png",
-      "clazz": "com.mobpvp.site.badge.BadgeModel"
+      "clazz": "gg.scala.site.badge.BadgeModel"
     },
     {
       "id": "staff",
       "name": "Staff Member",
       "description": "This user is a staff member.",
       "icon": "staff.png",
-      "clazz": "com.mobpvp.site.badge.defaults.StaffBadgeModel"
+      "clazz": "gg.scala.site.badge.defaults.StaffBadgeModel"
     }
   ]
 }
