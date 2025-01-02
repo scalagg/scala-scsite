@@ -1,6 +1,9 @@
 package gg.scala.site.cache.impl;
 
 import com.google.gson.JsonElement;
+import gg.scala.site.SiteApplication;
+import gg.scala.site.cache.leaderboard.LeaderboardType;
+import gg.scala.site.cache.leaderboard.ScalaPracticeLeaderboard;
 import gg.scala.site.cache.type.RepeatingCache;
 import gg.scala.site.model.leaderboard.LeaderboardModel;
 import gg.scala.site.request.RequestHandler;
@@ -11,6 +14,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class LeaderboardCache extends RepeatingCache<List<LeaderboardModel>> {
+    private final List<LeaderboardType> leaderboards = List.of(
+            new ScalaPracticeLeaderboard()
+    );
 
     public LeaderboardCache() {
         super(TimeUnit.SECONDS.toMillis(10));
@@ -18,15 +24,13 @@ public class LeaderboardCache extends RepeatingCache<List<LeaderboardModel>> {
 
     @Override
     public void execute() {
-        RequestResponse response = RequestHandler.get("leaderboard");
-
-        if (!response.wasSuccessful())
-            return;
-
         List<LeaderboardModel> models = new ArrayList<>();
 
-        for (JsonElement element : response.asArray())
-            models.add(new LeaderboardModel(element.getAsJsonObject()));
+        for (LeaderboardType leaderboard : leaderboards) {
+            SiteApplication.INSTANCE.getRedisService().executeCommand(jedis -> models.add(leaderboard.collect(jedis)));
+
+            System.out.println("Got leaderboard: " + leaderboard.getClass().getSimpleName());
+        }
 
         cache(models);
     }

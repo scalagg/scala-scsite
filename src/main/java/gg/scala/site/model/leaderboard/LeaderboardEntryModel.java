@@ -2,17 +2,18 @@ package gg.scala.site.model.leaderboard;
 
 import com.google.gson.JsonObject;
 import gg.scala.site.util.uuid.UUIDCache;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 public class LeaderboardEntryModel {
 
     private final UUID uuid;
     private final String value;
     private final String webColor;
-
     private String resolvedName;
 
     public LeaderboardEntryModel(JsonObject object) {

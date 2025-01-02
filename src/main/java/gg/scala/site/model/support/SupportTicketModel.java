@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import gg.scala.site.SiteConstant;
 import gg.scala.site.model.support.enums.SupportTypeModel;
+import gg.scala.site.util.ColorUtil;
 import gg.scala.site.util.TimeUtils;
 import gg.scala.site.util.uuid.UUIDCache;
 import lombok.Data;
@@ -111,28 +112,29 @@ public class SupportTicketModel {
         this.status = TicketStatus.valueOf(object.get("status").getAsString());
         this.author = UUID.fromString(object.get("author").getAsString());
         this.createdAt = object.get("createdAt").getAsLong();
-        this.lastUpdatedAt = object.get("lastUpdatedAt").getAsLong();
+        this.lastUpdatedAt = object.get("lastEditedAt").getAsLong();
 
+        JsonObject questionsObject = object.getAsJsonObject("questions");
         this.questions = new HashMap<>();
-        for (JsonElement element : object.get("questions").getAsJsonArray()) {
-            JsonObject questionObject = element.getAsJsonObject();
 
-            questions.put(
-                    questionObject.get("id").getAsInt(),
-                    questionObject.get("body").getAsString().replaceAll("\\r\\n", "<br>")
-            );
+        for (Map.Entry<String, JsonElement> entry : questionsObject.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue().getAsString().replaceAll("\\r\\n", "<br>");
+
+            this.questions.put(Integer.valueOf(key), value);
         }
+
 
         this.authorName = object.has("authorName")
                 ? object.get("authorName").getAsString() : UUIDCache.getName(author);
 
-        this.authorWebColor = object.has("authorWebColor")
-                ? object.get("authorWebColor").getAsString() : "#ffffff";
+        this.authorWebColor = object.has("authorColor")
+                ? ColorUtil.getHexFromMinecraft(object.get("authorColor").getAsString()) : "#ffffff";
 
-        this.punishment = object.has("punishment")
+        this.punishment = object.has("punishment") && !object.get("punishment").isJsonNull()
                 ? new PunishmentModel(object.get("punishment").getAsJsonObject()) : null;
 
-        this.resolveSuggestion = object.has("resolveSuggestion")
+        this.resolveSuggestion = object.has("resolveSuggestion") && !object.get("resolveSuggestion").isJsonNull()
                 ? new ResolveSuggestion(object.get("resolveSuggestion").getAsJsonObject()) : null;
 
         JsonArray array = object.get("replies").getAsJsonArray();
