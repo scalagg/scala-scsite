@@ -111,7 +111,7 @@ public class SupportTicketModel {
         this.status = TicketStatus.valueOf(object.get("status").getAsString());
         this.author = UUID.fromString(object.get("author").getAsString());
         this.createdAt = object.get("createdAt").getAsLong();
-        this.lastUpdatedAt = object.get("lastUpdatedAt").getAsLong();
+        this.lastUpdatedAt = object.get("lastEditedAt").getAsLong();
 
         this.questions = new HashMap<>();
         for (JsonElement element : object.get("questions").getAsJsonArray()) {
