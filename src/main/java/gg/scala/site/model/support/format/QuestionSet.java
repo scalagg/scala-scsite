@@ -30,7 +30,7 @@ public class QuestionSet {
         return this;
     }
     public String  getFormattedQuestion(int id) {
-        String question = questions.get(id).getQuestion();
+        String question = questions.get(id).question();
         for (Map.Entry<String, String> entry : placeholders.entrySet())
             question = question.replace(entry.getKey(), entry.getValue());
         return question;
@@ -40,12 +40,12 @@ public class QuestionSet {
         Map<Integer, Question> formatted = new LinkedHashMap<>();
 
         questions.forEach((id, questionObject) -> {
-            String question = questionObject.getQuestion();
+            String question = questionObject.question();
 
             for (Map.Entry<String, String> entry : placeholders.entrySet())
                 question = question.replace(entry.getKey(), entry.getValue());
 
-            formatted.put(id, new Question(id, question, questionObject.getRows()));
+            formatted.put(id, new Question(id, question, questionObject.rows()));
         });
 
         return formatted;

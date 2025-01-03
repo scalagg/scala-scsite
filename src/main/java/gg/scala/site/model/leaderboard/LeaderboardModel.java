@@ -2,6 +2,7 @@ package gg.scala.site.model.leaderboard;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
+@AllArgsConstructor
 public class LeaderboardModel {
 
     private final String name;

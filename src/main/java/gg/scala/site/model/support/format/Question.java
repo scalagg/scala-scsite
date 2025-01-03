@@ -2,11 +2,4 @@ package gg.scala.site.model.support.format;
 
 import lombok.Data;
 
-@Data
-public class Question {
-
-    private final int id;
-    private final String question;
-    private final int rows;
-
-}
+public record Question(int id, String question, int rows) { }

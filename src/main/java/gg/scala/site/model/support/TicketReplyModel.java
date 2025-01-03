@@ -1,6 +1,7 @@
 package gg.scala.site.model.support;
 
 import com.google.gson.JsonObject;
+import gg.scala.site.util.ColorUtil;
 import gg.scala.site.util.TimeUtils;
 import gg.scala.site.util.uuid.UUIDCache;
 import lombok.Data;
@@ -28,8 +29,8 @@ public class TicketReplyModel {
         this.authorName = object.has("authorName")
                 ? object.get("authorName").getAsString() : UUIDCache.getName(author);
 
-        this.authorWebColor = object.has("authorWebColor")
-                ? object.get("authorWebColor").getAsString() : "#ffffff";
+        this.authorWebColor = object.has("authorColor")
+                ? ColorUtil.getHexFromMinecraft(object.get("authorColor").getAsString()) : "#ffffff";
     }
 
     public String getPostedAgo() {

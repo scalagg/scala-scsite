@@ -54,7 +54,7 @@
                         <a th:href="${'/ticket/' + ticket.getId()}" th:text="${ticket.getWebDisplay()}"></a>
                         <div class="meta">
                                 <span>By <span th:style="${'color:' + ticket.getAuthorWebColor()}"
-                                               th:text="${ticket.getAuthorName()}"></span>,
+                                               th:text="${ticket.getAuthorName()}"></span>
                                 </span>
                             <span th:text="${ticket.getPostedAgo()}"></span>
                         </div>
@@ -66,7 +66,7 @@
                         th:with="lastReply=${ticket.getLastReply()}">
                         <a th:href="${'/u/' + lastReply.getAuthorName()}">By <span
                                 th:style="${'color:' + lastReply.getAuthorWebColor()}"
-                                th:text="${lastReply.getAuthorName()}"></span>,</a>
+                                th:text="${lastReply.getAuthorName()}"></span></a>
                         <div class="meta">
                             <span th:text="${lastReply.getPostedAgo()}"></span>
                         </div>

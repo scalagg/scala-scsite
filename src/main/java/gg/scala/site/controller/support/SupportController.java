@@ -172,9 +172,10 @@ public class SupportController {
             body.addProperty("status", TicketStatus.AWAITING_STAFF_REPLY.name());
 
         body.addProperty("author", profile.getUuid().toString());
-        body.addProperty("body", "N/A");
+        body.addProperty("createdAt", System.currentTimeMillis());
+        body.addProperty("lastEditedAt", 0);
 
-        JsonArray questionArray = new JsonArray();
+        JsonObject questionsObject = new JsonObject();
 
         for (Map.Entry<Integer, String> entry : supportForm.buildAnswers().entrySet()) {
             String answer = entry.getValue();
@@ -184,14 +185,10 @@ public class SupportController {
                 return new ModelAndView("redirect:/support/" + categoryRaw);
             }
 
-            JsonObject question = new JsonObject();
-            question.addProperty("id", entry.getKey());
-            question.addProperty("body", answer);
-
-            questionArray.add(question);
+            questionsObject.addProperty(String.valueOf(entry.getKey()), answer);
         }
 
-        body.add("questions", questionArray);
+        body.add("questions", questionsObject);
 
         RequestResponse response = RequestHandler.post("forum/ticket", body);
         if (!response.wasSuccessful())
@@ -229,6 +226,7 @@ public class SupportController {
         body.addProperty("id", StringUtil.generateId(5));
         body.addProperty("body", content);
         body.addProperty("author", profile.getUuid().toString());
+        body.addProperty("createdAt", System.currentTimeMillis());
 
         response = RequestHandler.post("forum/ticket/%s/reply", body, id);
         if (!response.wasSuccessful())
@@ -308,7 +306,7 @@ public class SupportController {
             suggestion.addProperty("status", status.name());
 
             body.addProperty("status", TicketStatus.AWAITING_ADMIN.name());
-            body.add("resolveSuggestion", suggestion);
+                body.add("resolveSuggestion", suggestion);
 
             response = RequestHandler.put("forum/ticket/%s", body, id);
             if (!response.wasSuccessful())

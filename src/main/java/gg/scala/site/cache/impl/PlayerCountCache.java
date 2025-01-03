@@ -1,8 +1,11 @@
 package gg.scala.site.cache.impl;
 
+import gg.scala.site.SiteApplication;
 import gg.scala.site.cache.type.RepeatingCache;
+import gg.scala.site.redis.RedisCommand;
 import gg.scala.site.request.RequestHandler;
 import gg.scala.site.request.RequestResponse;
+import redis.clients.jedis.Jedis;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,13 +17,11 @@ public class PlayerCountCache extends RepeatingCache<Integer> {
 
     @Override
     public void execute() {
-        RequestResponse response = RequestHandler.get("global-count");
-        if (!response.wasSuccessful()) {
-            cache(0);
-            return;
-        }
+        String globalPlayerCount = SiteApplication.INSTANCE.getRedisService().executeCommand(
+                redis -> redis.get("global-player-count")
+        );
 
-        cache(response.asObject().get("online").getAsInt());
+        cache(Integer.valueOf(globalPlayerCount));
     }
 
     @Override

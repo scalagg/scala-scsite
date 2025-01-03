@@ -1,7 +1,7 @@
 {
   "host": "38.114.240.186",
-  "port": 4322,
+  "port": 6380,
   "authEnabled": true,
-  "authPassword": "59U20W3h6PwNidHcjf2F11oZjgDpHH1AvAKw5",
+  "authPassword": "dn6sSIeGAAUwI91RxIIBase5NDiBb49WZC5tq",
   "dbId": 0
 }
