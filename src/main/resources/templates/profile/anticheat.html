@@ -13,7 +13,7 @@
                     th:if="${!antiCheatLogs.isEmpty()}"
                     th:each="antiCheatLog: ${antiCheatLogs}">
                     <div class="avatar xm">
-                        <img th:src="${'https://mc-heads.net/body/' + profile.getName()}"/>
+                        <img th:src="${'https://skins.mcstats.com/body/front/' + profile.getUuid()}"/>
                     </div>
                     <!--/*@thymesVar id="antiCheatLog" type="gg.scala.site.model.profile.log.AntiCheatLogModel"*/-->
                     <div class="ms-lg-3 me-auto">

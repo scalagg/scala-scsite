@@ -55,7 +55,7 @@
             <div id="content" class="post-card card">
                 <div class="card-header flex left">
                     <div class="avatar">
-                        <img th:src="${'https://mc-heads.net/body/' + thread.getAuthorName()}">
+                        <img th:src="${'https://skins.mcstats.com/body/front/' + thread.getAuthor()}">
                     </div>
 
                     <div class="post-title">
@@ -164,7 +164,7 @@
         <div class="card card-feed post-view">
             <div class="card-feed-action" th:if="${sessionProfile != null}">
                 <div class="avatar">
-                    <img th:src="${'https://mc-heads.net/body/' + sessionProfile.getName()}">
+                    <img th:src="${'https://skins.mcstats.com/bust/' + sessionProfile.getUuid()}">
                 </div>
 
                 <form class="card-feed-input" th:if="${thread.isLocked()}">
@@ -182,7 +182,7 @@
                     <li class="list-group-item" th:each="reply: ${thread.getReplies()}">
                         <div class="comment">
                             <div class="avatar xm">
-                                <img th:src="${'https://mc-heads.net/body/' + reply.getAuthorName()}"/>
+                                <img th:src="${'https://skins.mcstats.com/bust/' + reply.getAuthor()}"/>
                             </div>
                             <div class="ms-lg-3 me-auto">
                                 <div class="fw-bold" th:text="${reply.getComment()}"></div>

@@ -33,7 +33,7 @@
             <div id="staff" class="mb-5" style="gap: 15px;">
                 <div class="staff-member card" th:each="member: ${oplist}">
                     <div class="staff-avatar">
-                        <img th:src="${'https://mc-heads.net/body/' + member.getName()}"
+                        <img th:src="${'https://skins.mcstats.com/body/front/' + member.getUuid()}"
                              th:href="'#oplist-' + ${member.getUuid()}" data-bs-toggle="modal" alt=""/>
                     </div>
                     <div class="staff-info card-body text-center">

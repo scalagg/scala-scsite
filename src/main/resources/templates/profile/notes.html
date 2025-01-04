@@ -13,7 +13,7 @@
                     th:if="${!notes.isEmpty()}"
                     th:each="log: ${notes}">
                     <div class="avatar xm log">
-                        <img th:src="${'https://mc-heads.net/body/' + log.getAddedByName()}"/>
+                        <img th:src="${'https://skins.mcstats.com/body/front/' + log.getAddedByName()}"/>
                     </div>
                     <!--/*@thymesVar id="log" type="gg.solara.site.model.profile.log.Note"*/-->
                     <div class="ms-lg-3 me-auto">

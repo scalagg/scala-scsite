@@ -26,8 +26,9 @@ public class SearchController {
                 JsonObject userObject = jsonElement.getAsJsonObject();
 
                 String name = userObject.get("name").getAsString();
+                String uuid = userObject.get("uuid").getAsString();
                 userObject.addProperty("link", "/u/" + name);
-                userObject.addProperty("avatar", "https://mc-heads.net/avatar/" + name + "/32");
+                userObject.addProperty("avatar", "https://skins.mcstats.com/skull/" + uuid );
 
                 array.add(userObject);
             }

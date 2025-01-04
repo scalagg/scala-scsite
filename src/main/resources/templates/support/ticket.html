@@ -133,7 +133,7 @@
             <div id="content" class="post-card card">
                 <div class="card-header flex left">
                     <div class="avatar ticket">
-                        <img th:src="${'https://mc-heads.net/body/' + ticket.getAuthorName()}">
+                        <img th:src="${'https://skins.mcstats.com/body/front/' + ticket.getAuthor()}">
                     </div>
                     <div class="post-title ticket">
                         <h1 th:text="${ticket.getWebDisplay()}"></h1>
@@ -257,7 +257,7 @@
         <div class="card card-feed post-view">
             <div class="card-feed-action" th:if="${ticket.canReply(sessionProfile)}">
                 <div class="avatar">
-                    <img th:src="${'https://mc-heads.net/body/' + sessionProfile.getName()}">
+                    <img th:src="${'https://skins.mcstats.com/body/front/' + sessionProfile.getUuid()}">
                 </div>
 
                 <div class="card-feed-input" th:if="${!ticket.canReply(sessionProfile)}">
@@ -279,7 +279,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center"
                         th:each="reply: ${ticket.getReplies()}">
                         <div class="avatar xm ticket">
-                            <img th:src="${'https://mc-heads.net/body/' + reply.getAuthorName()}">
+                            <img th:src="${'https://skins.mcstats.com/body/front/' + reply.getAuthor()}">
                         </div>
 
                         <div class="ms-lg-3 me-auto">
