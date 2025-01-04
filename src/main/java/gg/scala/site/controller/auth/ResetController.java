@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ResetController {
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
 
     @RequestMapping("/reset-password")
     public ModelAndView reset(HttpServletRequest request,
@@ -40,12 +38,12 @@ public class ResetController {
     @PostMapping("/reset-confirm/{token}")
     public ModelAndView confirm(HttpServletRequest request,
                                 @PathVariable(name = "token") String token,
-                                @RequestParam(name = "newPassword") String newPassword,
-                                @RequestParam(name = "confirmNewPassword") String confirmNewPassword) {
-        if (!newPassword.equals(confirmNewPassword)) {
-            PopupUtil.error(request.getSession(), "Passwords do not match.");
-            return new ModelAndView("redirect:/reset-password?token=" + token);
-        }
+                                    @RequestParam(name = "newPassword") String newPassword,
+                                    @RequestParam(name = "confirmNewPassword") String confirmNewPassword) {
+            if (!newPassword.equals(confirmNewPassword)) {
+                PopupUtil.error(request.getSession(), "Passwords do not match.");
+                return new ModelAndView("redirect:/reset-password?token=" + token);
+            }
 
         PasswordResult result = AuthController.VALIDATION.validate(newPassword);
         if (!result.isValid()) {
@@ -55,7 +53,7 @@ public class ResetController {
 
         JsonObject body = new JsonObject();
         body.addProperty("token", token);
-        body.addProperty("password", encoder.encode(newPassword));
+        body.addProperty("password", newPassword);
 
         RequestResponse response = RequestHandler.post(
                 "forum/account/resetPassword/%s",

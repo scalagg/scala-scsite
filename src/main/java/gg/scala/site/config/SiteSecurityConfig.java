@@ -32,7 +32,6 @@ public class SiteSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final AntPathRequestMatcher MATCHER
             = new AntPathRequestMatcher("/logout");
 
-    private final BCryptPasswordEncoder passwordEncoder;
     private final SiteAuthSuccessHandler successHandler;
     private final AccountDetailsService accountDetailsService;
     private final CustomAuthenticationProvider customAuthenticationProvider;
@@ -41,8 +40,7 @@ public class SiteSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(customAuthenticationProvider)
-                .userDetailsService(accountDetailsService)
-                .passwordEncoder(this.passwordEncoder);
+                .userDetailsService(accountDetailsService);
     }
 
     @Override

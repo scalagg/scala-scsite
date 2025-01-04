@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 public class SettingsController {
@@ -34,9 +36,6 @@ public class SettingsController {
 
     public static final SessionCache SESSION_CACHE
             = CacheHandler.getCache(SessionCache.class);
-
-    @Autowired
-    private BCryptPasswordEncoder encoder;
 
     @RequestMapping("/settings")
     public ModelAndView settings(HttpServletRequest request) {
@@ -118,18 +117,12 @@ public class SettingsController {
         }
 
         RequestResponse responsePasssword = RequestHandler.get("forum/account/login/%s?password=%s",
-                profile.getName(), currentPassword
+                profile.getName(),
+                URLEncoder.encode(currentPassword, StandardCharsets.UTF_8)
         );
 
         if (!responsePasssword.wasSuccessful()) {
             PopupUtil.error(request.getSession(), responsePasssword.getCode(), responsePasssword.getErrorMessage());
-            return modelAndView;
-        }
-
-        JsonObject object = responsePasssword.asObject();
-
-        if (!object.has("passwordCorrect") || !object.get("passwordCorrect").getAsBoolean()) {
-            request.getSession().setAttribute("error_message", "Your current password is incorrect.");
             return modelAndView;
         }
 
@@ -141,6 +134,7 @@ public class SettingsController {
                 "forum/account/password/%s",
                 body, profile.getUuid().toString()
         );
+
 
         if (response.wasSuccessful()) {
             PopupUtil.success(request.getSession(), "Your password has been changed.");

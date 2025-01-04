@@ -34,9 +34,6 @@ public class AuthController {
             new UppercaseRule(1)
     );
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-
     @RequestMapping("/login")
     public ModelAndView login(HttpServletRequest request, @RequestParam(value = "redirect", required = false, defaultValue = "") String redirect) {
         ModelAndView view = new ModelAndView("redirect:/" + redirect);

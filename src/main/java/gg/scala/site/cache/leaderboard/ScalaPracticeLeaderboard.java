@@ -33,7 +33,6 @@ public class ScalaPracticeLeaderboard implements LeaderboardType {
             var key = BASE_KEY + statType + END_KEY;
             var values = redis.zrangeWithScores(key, 0, -1);
 
-            System.out.println(key);
             for (var entry : values) {
                 entryModels.add(new LeaderboardEntryModel(
                         UUID.fromString(entry.getElement()),

@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.net.URLEncoder;
@@ -19,11 +18,9 @@ import java.nio.charset.StandardCharsets;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private final UserDetailsService accountDetailsService;
-    private final PasswordEncoder passwordEncoder;
 
-    public CustomAuthenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+    public CustomAuthenticationProvider(UserDetailsService userDetailsService) {
         this.accountDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -44,9 +41,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (!response.wasSuccessful())
             throw new BadCredentialsException("Invalid username or password");
             // returns 400 if its a bad password
-        //if (!response.asObject().has("passwordCorrect") || !response.asObject().get("passwordCorrect").getAsBoolean()) {
-        //    throw new BadCredentialsException("Invalid username or password");
-        //}
+
+        /*
+        if (!response.asObject().has("passwordCorrect") || !response.asObject().get("passwordCorrect").getAsBoolean()) {
+            throw new BadCredentialsException("Invalid username or password");
+        }
+
+         */
 
         return new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());
     }
