@@ -63,7 +63,16 @@ public class PunishmentModel {
 
         if (object.get("removedAt").getAsLong() != -1) {
             this.removed = true;
-            this.removedBy = object.get("removedBy").getAsString();
+            if (object.get("removedBy").isJsonNull()) {
+                this.removedBy = "00000000-0000-0000-0000-000000000000";
+                this.removerByName = "Console";
+                this.removerByWebColor = "#cc0000";
+            } else {
+                this.removedBy = object.get("removedBy").getAsString();
+                this.removerByName = UUIDCache.getName(UUID.fromString(removedBy));
+                this.removerByWebColor = "#212529";
+            }
+
             this.removedAt = object.get("removedAt").getAsLong();
             this.removedReason = object.get("removedReason").getAsString();
         } else {
@@ -71,6 +80,8 @@ public class PunishmentModel {
             this.removedBy = "N/A";
             this.removedAt = -1;
             this.removedReason = "N/A";
+            this.removerByName = "N/A";
+            this.removerByWebColor = "#212529";
         }
 
         if (UUID.fromString(punishedBy).getMostSignificantBits() == 0 && UUID.fromString(punishedBy).getLeastSignificantBits() == 0) {
@@ -85,14 +96,6 @@ public class PunishmentModel {
                 this.punishedByWebColor = object.get("punishedByWebColor").getAsString();
             else this.punishedByWebColor = "#212529";
         }
-
-        if (object.has("removerByName"))
-            this.removerByName = object.get("removerByName").getAsString();
-        else this.removerByName = (removedBy.equals("N/A") ? null : UUIDCache.getName(UUID.fromString(removedBy)));
-
-        if (object.has("removerByWebColor"))
-            this.removerByWebColor = object.get("removerByWebColor").getAsString();
-        else this.removerByWebColor = "#212529";
     }
 
     public String getPunishedAgo() {
