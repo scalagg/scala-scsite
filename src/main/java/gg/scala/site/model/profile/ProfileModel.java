@@ -3,6 +3,7 @@ package gg.scala.site.model.profile;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import gg.scala.site.SiteApplication;
 import gg.scala.site.badge.BadgeModel;
 import gg.scala.site.model.RankModel;
 import gg.scala.site.model.anticheat.AnticheatModel;
@@ -98,15 +99,15 @@ public class ProfileModel extends UUIDHolder {
                 notes.add(new Note(element.getAsJsonObject()));
 
 
-//        if (object.has("badges"))
-//            for (JsonElement element : object.get("badges").getAsJsonArray()) {
-//                BadgeModel badge = SiteApplication.INSTANCE
-//                        .getBadgeHandler()
-//                        .getBadge(element.getAsString());
-//
-//                if (badge != null)
-//                    badges.add(badge);
-//            }
+        if (object.has("badges"))
+            for (JsonElement element : object.get("badges").getAsJsonArray()) {
+                BadgeModel badge = SiteApplication.INSTANCE
+                        .getBadgeHandler()
+                        .getBadge(element.getAsString());
+
+                if (badge != null)
+                    badges.add(badge);
+            }
 
 
         if (object.has("webSettings") && !object.get("webSettings").isJsonNull()) {

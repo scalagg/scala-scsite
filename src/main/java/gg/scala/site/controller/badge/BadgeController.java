@@ -88,7 +88,7 @@ public class BadgeController {
         body.addProperty("uuid", UUIDCache.getUuid(username).toString());
         body.addProperty("badgeId", badge.getId());
 
-        RequestResponse response = RequestHandler.post("badge", body);
+        RequestResponse response = RequestHandler.post("forum/account/badge", body);
         if (!response.wasSuccessful()) {
             PopupUtil.error(request.getSession(), response.getErrorMessage());
         } else {
@@ -124,7 +124,7 @@ public class BadgeController {
         body.addProperty("uuid", UUIDCache.getUuid(username).toString());
         body.addProperty("badgeId", badge.getId());
 
-        RequestResponse response = RequestHandler.post("badge/remove", body);
+        RequestResponse response = RequestHandler.post("forum/account/badge/remove", body);
 
         if (!response.wasSuccessful()) {
             PopupUtil.error(request.getSession(), response.getErrorMessage());
