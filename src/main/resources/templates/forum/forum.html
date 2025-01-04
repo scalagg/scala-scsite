@@ -115,7 +115,7 @@
 
                     <div class="node-icon">
                         <div class="avatar xm">
-                            <img th:src="${'https://mc-heads.net/body/' + thread.getAuthorName()}">
+                            <img th:src="${'https://skins.mcstats.com/body/front/' + thread.getAuthor()}">
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@
                         <a th:href="${'/thread/' + thread.getId()}" class="fw-bold" th:text="${thread.getTitle()}"></a>
                         <div class="user-meta flex">
                             <div class="avatar">
-                                <img th:src="${'https://mc-heads.net/avatar/' + thread.getAuthorName() + '/32'}"/>
+                                <img th:src="${'https://skins.mcstats.com/skull/' + thread.getAuthorName()}"/>
                             </div>
                             <a href="#"
                                th:style="${'color: ' + thread.getAuthorWebColor() + ' !important'}"
@@ -137,7 +137,7 @@
                          th:if="${thread.getLastReply() != null}"
                          th:with="lastReply=${thread.getLastReply()}">
                         <div class="avatar xm">
-                            <img th:src="${'https://mc-heads.net/body/' + lastReply.getAuthorName()}">
+                            <img th:src="${'https://skins.mcstats.com/body/front/' + lastReply.getAuthor()}">
                         </div>
 
                         <div>

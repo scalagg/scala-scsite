@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-user-details">
                 <div class="avatar">
-                    <img th:src="'https://mc-heads.net/body/' + ${profile.getName()}">
+                    <img th:src="'https://skins.mcstats.com/bust/' + ${profile.getUuid()}">
                 </div>
 
                 <div class="user-text">
@@ -78,7 +78,7 @@
                    th:with="friendName=${friend.getOtherName(profile.getUuid())}"
                    th:href="${'/u/' + friendName}"
                    th:title="${friendName}">
-                    <img th:src="${'https://mc-heads.net/avatar/' + friendName}">
+                    <img th:src="${'https://skins.mcstats.com/bust/' + friendName.getUuid()}">
                 </a>
             </div>
         </div>

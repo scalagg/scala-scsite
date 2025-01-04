@@ -29,7 +29,7 @@
 
                     <div class="user-meta">
                         <div class="avatar">
-                            <img th:src="${'https://mc-heads.net/avatar/' + latestAnnouncement.getAuthorName() + '/32'}">
+                            <img th:src="${'https://skins.mcstats.com/skull/' + latestAnnouncement.getAuthor()}">
                         </div>
 
                         <a th:href="${'/u/' + latestAnnouncement.getAuthorName()}"
@@ -57,7 +57,7 @@
 
                     <div class="user-meta">
                         <div class="avatar">
-                            <img th:src="${'https://mc-heads.net/avatar/' + announcement.getAuthorName() + '/32'}">
+                            <img th:src="${'https://skins.mcstats.com/skull/' + announcement.getAuthor()}">
                         </div>
 
                         <a th:href="${'/u/' + announcement.getAuthorName()}"

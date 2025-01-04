@@ -37,7 +37,7 @@
         <!--/*@thymesVar id="sessionProfile" type="gg.solara.site.model.profile.ProfileModel"*/-->
         <div class="card-feed-action" th:if="${profile.getCommentStatus().canInteract(profile, sessionProfile)}">
             <div class="avatar" th:if="${sessionProfile != null}">
-                <img th:src="${'https://mc-heads.net/body/' + sessionProfile.getName()}">
+                <img th:src="${'https://skins.mcstats.com/body/side/' + profile.getUuid().toString()}">
             </div>
 
             <form class="card-feed-input" th:if="${sessionProfile != null}" th:action="@{/comment}" method="post">
@@ -63,7 +63,8 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center"
                     th:each="comment: ${profile.getComments()}">
                     <div class="avatar xm statistic">
-                        <img th:src="${'https://mc-heads.net/body/' + comment.getAuthor()}">
+
+                        <img th:src="${'https://skins.mcstats.com/bust/' + comment.getAuthor()}">
                     </div>
                     <div class="ms-lg-3 me-auto">
                         <div class="fw-bold" th:text="${comment.getContent()}"></div>

@@ -74,7 +74,7 @@
                         <div class="dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown"
                              aria-expanded="false">
                             <div class="user avatar xm">
-                                <img th:src="${'https://mc-heads.net/body/' + sessionProfile.getName()}">
+                                <img th:src="${'https://skins.mcstats.com/skull/' + sessionProfile.getUuid()}">
                                 <div class="notification"
                                      th:text="${unreadNotifications}"
                                      th:if="${unreadNotifications > 0}"></div>
