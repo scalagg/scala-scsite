@@ -5,13 +5,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import gg.scala.site.badge.BadgeModel;
 import gg.scala.site.model.RankModel;
+import gg.scala.site.model.anticheat.AnticheatModel;
 import gg.scala.site.model.forum.ForumThread;
 import gg.scala.site.model.grants.GrantsModel;
-import gg.scala.site.model.profile.data.*;
 import gg.scala.site.model.profile.data.*;
 import gg.scala.site.model.profile.log.LogModel;
 import gg.scala.site.model.profile.log.Note;
 import gg.scala.site.model.punishment.PunishmentModel;
+import gg.scala.site.request.RequestHandler;
 import gg.scala.site.util.TimeUtils;
 import gg.scala.site.util.uuid.UUIDHolder;
 import lombok.Getter;
@@ -271,5 +272,26 @@ public class ProfileModel extends UUIDHolder {
 //
 //        return count;
 //    }
+
+    /**
+     * This is lazily loaded due to it being fairly expensive on the backend
+     * so we don't need to load it every time a profile is loaded, only when
+     * someone specifically requests it.
+     */
+    public List<AnticheatModel> getAnticheatLogs() {
+        var response = RequestHandler.get("anticheat/" + uuid.toString());
+        if (!response.wasSuccessful()) {
+            return new ArrayList<>();
+        }
+
+        JsonArray results = response.asArray();
+        List<AnticheatModel> logs = new ArrayList<>();
+
+        for (JsonElement element : results) {
+            logs.add(new AnticheatModel(element.getAsJsonObject()));
+        }
+
+        return logs;
+    }
 
 }

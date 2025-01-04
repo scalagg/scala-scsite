@@ -99,7 +99,7 @@ public class ProfileController {
             return view;
 
         new ViewPaginationModel<>(
-                page == null ? 1 : page, 10, profile.getNotes(), "antiCheatLogs"
+                page == null ? 1 : page, 10, profile.getAnticheatLogs(), "antiCheatLogs"
         ).applyTo(view, String.format(
                 "/u/%s/anticheat?page={page}",
                 profile.getName()

@@ -18,45 +18,10 @@
                     <!--/*@thymesVar id="antiCheatLog" type="gg.scala.site.model.profile.log.AntiCheatLogModel"*/-->
                     <div class="ms-lg-3 me-auto">
                         <div class="fw-bold">
-                            <a th:text="${antiCheatLog.getCheck()}" style="color: silver"></a>
+                            <a th:text="${antiCheatLog.getCheckName()}" style="color: silver"></a>
                         </div>
                         <div class="card-feed-meta">
-                            <span th:text="${antiCheatLog.getTimestampAgo() + ' on ' + antiCheatLog.getServer()}"></span>
-                            <a th:text="${'VL: ' + antiCheatLog.getViolation()}"></a>
-                        </div>
-                    </div>
-                    <button type="submit"
-                            th:href="'#modal-info-' + ${antiCheatLog.getId()}"
-                            data-bs-toggle="modal"
-                            class="btn btn-primary comment-post"
-                            th:if="${sessionProfile.hasPermission('website.anticheat.details')}">
-                        Details
-                    </button>
-
-                    <div class="modal fade"
-                         th:if="${sessionProfile.hasPermission('website.anticheat.details')}"
-                         th:id="'modal-info-' + ${antiCheatLog.getId()}"
-                         style="transform: translateY(250px);">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    Log Details
-                                    <button type="button" class="btn-close"
-                                            data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div th:each="entry: ${antiCheatLog.getDetails().entrySet()}">
-                                        <b th:text="${entry.getKey() + ': '}"></b>
-                                        <a th:text="${entry.getValue()}"></a>
-                                        <br>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close
-                                    </button>
-                                </div>
-                            </div>
+                            <span th:text="${'failed ' + antiCheatLog.getCount() + 'x'}"></span>
                         </div>
                     </div>
                 </li>
