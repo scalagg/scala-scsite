@@ -2842,8 +2842,8 @@ input[type="search"]::-webkit-search-results-decoration {
     text-transform: uppercase;
     margin-left: 8px;
     font-size: 13px;
-    letter-spacing: 2px;
-    word-break: auto-phrase;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .btn {
