@@ -29,6 +29,13 @@
                         </div>
                     </div>
 
+                    <div class="row" th:if="${sessionProfile != null && sessionProfile.hasPermission('website.thread.image.edit')}">
+                        <div class="col mb-3">
+                            <label for="imageUrl" class="form-label">Image Link</label>
+                            <input type="text" id="imageUrl" name="imageUrl" class="form-control" th:value="${thread.getImageUrl()}">
+                        </div>
+                    </div>
+
                     <div class="col mb-3">
                         <label for="tiny" class="form-label">Message</label>
                         <textarea id="tiny" name="body"></textarea>
