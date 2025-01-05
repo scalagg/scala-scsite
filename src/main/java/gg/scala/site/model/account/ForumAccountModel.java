@@ -21,7 +21,11 @@ public class ForumAccountModel {
     public ForumAccountModel(JsonObject object) {
         this.uuid = UUID.fromString(object.get("uuid").getAsString());
         this.email = object.get("email").getAsString();
-        this.token = object.has("token") && !object.get("token").isJsonNull() ? object.get("token").getAsString() : null;
+        if (object.has("token") && !object.get("token").isJsonNull()) {
+            this.token = object.get("token").getAsString();
+        } else {
+            this.token = null;
+        }
         this.password = object.has("password")
                 ? object.get("password").getAsString() : null;
 
