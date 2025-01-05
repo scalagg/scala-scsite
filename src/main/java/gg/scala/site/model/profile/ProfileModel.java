@@ -99,7 +99,7 @@ public class ProfileModel extends UUIDHolder {
                 notes.add(new Note(element.getAsJsonObject()));
 
 
-        if (object.has("badges"))
+        if (object.has("badges") && !object.get("badges").isJsonNull())
             for (JsonElement element : object.get("badges").getAsJsonArray()) {
                 BadgeModel badge = SiteApplication.INSTANCE
                         .getBadgeHandler()
