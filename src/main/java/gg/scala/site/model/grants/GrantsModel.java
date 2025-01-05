@@ -55,6 +55,13 @@ public class GrantsModel {
 
         this.server = object.get("addedOn").getAsString();
 
+        this.removed = false;
+        this.removedBy = "N/A";
+        this.removedAt = -1;
+        this.removedReason = "N/A";
+
+
+        /*
         if (object.get("removedAt").getAsLong() != -1) {
             this.removed = true;
 
@@ -72,6 +79,8 @@ public class GrantsModel {
             this.removedAt = -1;
             this.removedReason = "N/A";
         }
+
+         */
 
         if (UUID.fromString(addedBy).getMostSignificantBits() == 0 && UUID.fromString(addedBy).getLeastSignificantBits() == 0) {
             this.addedByName = "Console";
