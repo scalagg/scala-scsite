@@ -127,7 +127,8 @@ public class ThreadController {
     public ModelAndView post(HttpServletRequest request,
                              @RequestParam("forumId") String forumId,
                              @RequestParam("title") String title,
-                             @RequestParam("body") String content) {
+                             @RequestParam("body") String content,
+                             @RequestParam(value = "imageUrl", required = false) String imageUrl) {
         ProfileModel profile = SessionUtil.getProfile(request);
 
         if (profile == null)
@@ -167,6 +168,7 @@ public class ThreadController {
         body.addProperty("createdAt", System.currentTimeMillis());
         body.addProperty("pinned", false);
         body.addProperty("locked", false);
+        body.addProperty("imageUrl", imageUrl);
 
         response = RequestHandler.post("forum/thread", body);
         if (!response.wasSuccessful()) {

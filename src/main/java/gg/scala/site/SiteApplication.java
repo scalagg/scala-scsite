@@ -56,7 +56,8 @@ public class SiteApplication {
                 new SessionCache(),
                 new TagCache(),
                 new ReplyCache(),
-                new NotificationCache()
+                new NotificationCache(),
+                new OnlinePlayerCache()
         );
 
         Runtime.getRuntime().addShutdownHook(new Thread(

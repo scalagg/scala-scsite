@@ -13,7 +13,7 @@ public class SiteConstant {
 
     public static final boolean API_DEBUG = true;
     public static final String API_HOST = "http://localhost:8081/";
-    public static final String API_KEY = "012345678";
+    public static final String API_KEY = "32d29fb0-b855-4422-a17c-6739aa444e65";
 
     public static final boolean MAINTENANCE_MODE = false;
 

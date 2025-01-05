@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import gg.scala.site.SiteApplication;
 import gg.scala.site.badge.BadgeModel;
+import gg.scala.site.cache.CacheHandler;
+import gg.scala.site.cache.impl.OnlinePlayerCache;
 import gg.scala.site.model.RankModel;
 import gg.scala.site.model.anticheat.AnticheatModel;
 import gg.scala.site.model.forum.ForumThread;
@@ -22,6 +24,8 @@ import java.util.*;
 
 @Getter
 public class ProfileModel extends UUIDHolder {
+
+    private static final OnlinePlayerCache CACHE = CacheHandler.getCache(OnlinePlayerCache.class);
 
     private final UUID uuid;
     private final String name;
@@ -67,7 +71,13 @@ public class ProfileModel extends UUIDHolder {
 //        this.currentServer = object.has("currentServer")
 //                ? object.get("currentServer").getAsString()
 //                : null;
-        this.currentServer = lastServer;
+
+
+        if (CACHE.getCachedData().contains(uuid.toString())) {
+            this.currentServer = lastServer;
+        } else {
+            this.currentServer = null;
+        }
 
         this.rank = new RankModel(object.get("rank").getAsJsonObject());
 
@@ -145,7 +155,7 @@ public class ProfileModel extends UUIDHolder {
 
 
     public String getSocial(SocialModel social) {
-        return settings.getOrDefault(social.getSettingName(), "");
+        return settings.getOrDefault(social.getName(), "");
     }
 
     public String formatSeenAgo() {
@@ -205,7 +215,7 @@ public class ProfileModel extends UUIDHolder {
         List<SocialModel> toReturn = new ArrayList<>();
 
         for (SocialModel value : SocialModel.values()) {
-            if (!settings.containsKey(value.getSettingName()) || getSocial(value).isEmpty())
+            if (!settings.containsKey(value.getName()) || getSocial(value).isEmpty())
                 continue;
 
             toReturn.add(value);

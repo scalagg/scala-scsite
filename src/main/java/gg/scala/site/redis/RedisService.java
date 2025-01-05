@@ -88,6 +88,13 @@ public class RedisService {
         });
     }
 
+    public void publish(String channel, String data) {
+        this.executeCommand(redis -> {
+            redis.publish(channel, data);
+            return null;
+        });
+    }
+
     public static String convertPacketName(String oldName) {
         if(oldName.endsWith("UpdateServerPacket")) {
             return "gg.scala.site.server.packet.UpdateServerPacket";

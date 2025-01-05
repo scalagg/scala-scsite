@@ -72,7 +72,7 @@ public class ForumThread {
         this.pinned = object.get("pinned").getAsBoolean();
         this.locked = object.get("locked").getAsBoolean();
 
-        this.imageUrl = object.has("imageUrl")
+        this.imageUrl = object.has("imageUrl") && !object.get("imageUrl").isJsonNull()
                 ? object.get("imageUrl").getAsString() : "";
 
         if (object.has("parentThreadId") && !object.get("parentThreadId").isJsonNull())

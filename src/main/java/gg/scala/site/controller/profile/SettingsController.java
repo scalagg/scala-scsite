@@ -2,6 +2,7 @@
 package gg.scala.site.controller.profile;
 
 import com.google.gson.JsonObject;
+import gg.scala.site.SiteApplication;
 import gg.scala.site.cache.CacheHandler;
 import gg.scala.site.cache.impl.ProfileCache;
 import gg.scala.site.cache.impl.SessionCache;
@@ -10,6 +11,7 @@ import gg.scala.site.model.account.ForumAccountModel;
 import gg.scala.site.model.profile.ProfileModel;
 import gg.scala.site.model.profile.data.PrivacyModel;
 import gg.scala.site.model.profile.data.SocialModel;
+import gg.scala.site.redis.packet.RPacket;
 import gg.scala.site.request.RequestHandler;
 import gg.scala.site.request.RequestResponse;
 import gg.scala.site.util.ErrorUtil;
@@ -66,14 +68,14 @@ public class SettingsController {
             return ErrorUtil.loginRedirect("/settings");
 
         JsonObject body = new JsonObject();
-        body.addProperty(SocialModel.YOUTUBE.getSettingName(), youtube.trim());
-        body.addProperty(SocialModel.TWITTER.getSettingName(), twitter.trim());
-        body.addProperty(SocialModel.TWITCH.getSettingName(), twitch.trim());
-        body.addProperty(SocialModel.GITHUB.getSettingName(), github.trim());
-        body.addProperty(SocialModel.TELEGRAM.getSettingName(), telegram.trim());
-        body.addProperty(SocialModel.DISCORD.getSettingName(), discord.trim());
+        body.addProperty(SocialModel.YOUTUBE.getName(), youtube.trim());
+        body.addProperty(SocialModel.TWITTER.getName(), twitter.trim());
+        body.addProperty(SocialModel.TWITCH.getName(), twitch.trim());
+        body.addProperty(SocialModel.GITHUB.getName(), github.trim());
+        body.addProperty(SocialModel.TELEGRAM.getName(), telegram.trim());
+        body.addProperty(SocialModel.DISCORD.getName(), discord.trim());
 
-        RequestResponse response = RequestHandler.put("forum/account/setting/%s", body, profile.getUuid().toString());
+        RequestResponse response = RequestHandler.put("profile/settings/%s", body, profile.getUuid().toString());
         if (!response.wasSuccessful())
             return ErrorUtil.create(response);
 
@@ -84,6 +86,8 @@ public class SettingsController {
 
         CACHE.update(profile);
         SESSION_CACHE.update(profile);
+
+        SiteApplication.INSTANCE.getRedisService().publish("lemon", "{\"packet\":\"update\",\"content\":{\"player\":\"%s\",\"type\":\"gg.scala.friends.player.KFriendsPlayer\"}}".formatted(profile.getUuid().toString()));
 
         return new ModelAndView("redirect:/settings");
     }
@@ -172,7 +176,7 @@ public class SettingsController {
         body.addProperty("STAFF_PAGE_STATUS", staffPageStatus);
 
         RequestResponse response = RequestHandler.put(
-                "forum/account/setting/%s",
+                "profile/updatePrivacySettings/%s",
                 body,
                 profile.getUuid().toString()
         );
