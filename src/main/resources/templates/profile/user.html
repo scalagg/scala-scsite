@@ -78,7 +78,7 @@
                    th:with="friendName=${friend.getOtherName(profile.getUuid())}"
                    th:href="${'/u/' + friendName}"
                    th:title="${friendName}">
-                    <img th:src="${'https://skins.mcstats.com/bust/' + friendName.getUuid()}">
+                    <img th:src="${'https://skins.mcstats.com/bust/' + friend.getOtherUUID(profile.getUuid())}">
                 </a>
             </div>
         </div>

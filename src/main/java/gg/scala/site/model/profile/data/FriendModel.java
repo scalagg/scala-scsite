@@ -30,6 +30,9 @@ public class FriendModel {
 
         this.acceptedAt = object.get("acceptedAt").getAsLong();
     }
+    public String getOtherUUID(UUID uuid) {
+        return uuid.equals(uuidA) ? uuidB.toString() : uuidA.toString();
+    }
 
     public String getOtherName(UUID uuid) {
         return uuid.equals(uuidA) ? nameB : nameA;
