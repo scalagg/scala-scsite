@@ -28,14 +28,14 @@ public class GrantsModel {
     private final String server;
     private final boolean removed;
     private final String removedBy;
-    private final long removedAt;
-    private final String removedReason;
+    private long removedAt;
+    private  String removedReason;
 
     private final String addedByName;
     private final String addedByWebColor;
 
-    private final String removerByName;
-    private final String removerByWebColor;
+    private String removerByName;
+    private String removerByWebColor;
 
     public GrantsModel(JsonObject object) {
         this.id = UUID.fromString(object.get("uuid").getAsString());
@@ -57,9 +57,15 @@ public class GrantsModel {
 
         if (object.get("removedAt").getAsLong() != -1) {
             this.removed = true;
-            this.removedBy = object.get("removedBy").getAsString();
-            this.removedAt = object.get("removedAt").getAsLong();
-            this.removedReason = object.get("removedReason").getAsString();
+            if (object.get("removedBy").isJsonNull()) {
+                this.removedBy = "00000000-0000-0000-0000-000000000000";
+                this.removerByName = "Console";
+                this.removerByWebColor = "#cc0000";
+            } else {
+                this.removedBy = object.get("removedBy").getAsString();
+                this.removerByName = UUIDCache.getName(UUID.fromString(removedBy));
+                this.removerByWebColor = "#212529";
+            }
         } else {
             this.removed = false;
             this.removedBy = "N/A";
@@ -79,14 +85,6 @@ public class GrantsModel {
                 this.addedByWebColor = object.get("addedByWebColor").getAsString();
             else this.addedByWebColor = "#212529";
         }
-
-        if (object.has("removerByName"))
-            this.removerByName = object.get("removerByName").getAsString();
-        else this.removerByName = (removedBy.equals("N/A") ? null : UUIDCache.getName(UUID.fromString(removedBy)));
-
-        if (object.has("removerByWebColor"))
-            this.removerByWebColor = object.get("removerByWebColor").getAsString();
-        else this.removerByWebColor = "#212529";
     }
 
     public String getAddedAgo() {
