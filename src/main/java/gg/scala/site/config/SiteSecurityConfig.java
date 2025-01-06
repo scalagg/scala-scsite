@@ -4,7 +4,6 @@ import gg.scala.site.account.AccountDetailsService;
 import gg.scala.site.config.filter.SiteUrlFilter;
 import gg.scala.site.config.firewall.CustomAuthenticationProvider;
 import gg.scala.site.config.firewall.SiteHttpFirewall;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import gg.scala.site.config.logout.SiteLogoutHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

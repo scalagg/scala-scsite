@@ -18,8 +18,6 @@ import gg.scala.site.util.ErrorUtil;
 import gg.scala.site.util.PopupUtil;
 import gg.scala.site.util.SessionUtil;
 import gg.scala.site.util.password.result.PasswordResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

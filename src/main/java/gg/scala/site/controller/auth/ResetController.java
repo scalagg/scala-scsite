@@ -1,7 +1,6 @@
 package gg.scala.site.controller.auth;
 
 import com.google.gson.JsonObject;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import gg.scala.site.util.PopupUtil;
 import gg.scala.site.util.SessionUtil;
 import gg.scala.site.request.RequestHandler;

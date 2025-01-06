@@ -53,7 +53,7 @@ public class ForumsController {
     public ModelAndView viewForum(HttpServletRequest request,
                                   @PathVariable("id") String id,
                                   @RequestParam(value = "page", required = false) Integer page) {
-        RequestResponse response = RequestHandler.get("forum/forum/%s?page=1", id);
+        RequestResponse response = RequestHandler.get("forum/forum/%s?page=1", id.replace(" ", "-"));
         if (!response.wasSuccessful())
             return ErrorUtil.create(response);
 
@@ -108,7 +108,7 @@ public class ForumsController {
         JsonObject body = new JsonObject();
         body.addProperty("category", id);
         body.addProperty("id", StringUtil.generateId(5));
-        body.addProperty("name", name);
+        body.addProperty("name", name.trim());
         body.addProperty("weight", weight);
         body.addProperty("description", description);
         body.addProperty("locked", locked);
@@ -146,10 +146,11 @@ public class ForumsController {
         }
 
         JsonObject body = new JsonObject();
-        body.addProperty("name", name);
+        body.addProperty("name", name.trim());
         body.addProperty("weight", weight);
         body.addProperty("description", description);
         body.addProperty("locked", locked);
+
 
         if (permission != null && !permission.isEmpty())
             body.addProperty("permission", permission);
