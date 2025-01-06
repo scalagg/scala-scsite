@@ -17,4 +17,9 @@ public class MiscController {
         return new ModelAndView("misc/ranked-tutorial");
     }
 
+    @RequestMapping("/terms")
+    public ModelAndView termsofService() {
+        return new ModelAndView("misc/terms");
+    }
+
 }
