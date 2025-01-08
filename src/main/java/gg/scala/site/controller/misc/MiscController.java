@@ -21,5 +21,13 @@ public class MiscController {
     public ModelAndView termsofService() {
         return new ModelAndView("misc/terms");
     }
+    @RequestMapping("/data")
+    public ModelAndView dataPolicy() {
+        return new ModelAndView("misc/data-policy");
+    }
+    @RequestMapping("/care")
+    public ModelAndView carePolicy() {
+        return new ModelAndView("misc/care");
+    }
 
 }
