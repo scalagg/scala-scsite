@@ -29,5 +29,13 @@ public class MiscController {
     public ModelAndView carePolicy() {
         return new ModelAndView("misc/care");
     }
+    @RequestMapping("/rules")
+    public ModelAndView rules() {
+        return new ModelAndView("redirect:http://solara.gg/thread/nqmfsfuc");
+    }
+    @RequestMapping("/forum-rules")
+    public ModelAndView forumRules() {
+        return new ModelAndView("misc/forum-rules");
+    }
 
 }
