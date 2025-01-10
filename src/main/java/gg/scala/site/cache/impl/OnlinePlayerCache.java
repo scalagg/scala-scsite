@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class OnlinePlayerCache extends RepeatingCache<List<String>> {
-    private final List<String> onlinePlayers = List.of();
 
     public OnlinePlayerCache() {
         super(TimeUnit.SECONDS.toMillis(10));

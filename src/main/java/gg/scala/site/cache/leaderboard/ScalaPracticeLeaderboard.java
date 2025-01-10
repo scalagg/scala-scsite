@@ -33,13 +33,18 @@ public class ScalaPracticeLeaderboard implements LeaderboardType {
             var key = BASE_KEY + statType + END_KEY;
             var values = redis.zrangeWithScores(key, 0, -1);
 
+            int i = 0;
             for (var entry : values) {
+                if (i >= 10)
+                    break;
+
                 entryModels.add(new LeaderboardEntryModel(
                         UUID.fromString(entry.getElement()),
                         entry.getScore() + "",
                         ColorUtil.getHexFromMinecraft("&c"), // TODO: do this!
                         UUIDCache.getName(UUID.fromString(entry.getElement()))
                 ));
+                i++;
             }
 
             entries.put(statType, entryModels);
