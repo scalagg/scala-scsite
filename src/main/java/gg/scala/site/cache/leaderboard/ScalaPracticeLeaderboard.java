@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class ScalaPracticeLeaderboard implements LeaderboardType {
-    private static final String BASE_KEY = "scalapractice:leaderboards:";
+    private static final String BASE_KEY = "tropicpractice:leaderboards:";
     private static final String END_KEY = ":global:final";
 
     private static final String[] STAT_TYPES = new String[] {
