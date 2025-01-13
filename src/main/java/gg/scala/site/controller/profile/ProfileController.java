@@ -223,8 +223,10 @@ public class ProfileController {
                 ? UUID.fromString(name)
                 : UUIDCache.getUuid(name);
 
-        if (uuid == null)
+        if (uuid == null) {
+            System.out.println("Failed to get UUID for name: " + name);
             return null;
+        }
 
         if (!CACHE.contains(uuid)) {
             RequestResponse response = RequestHandler.get(

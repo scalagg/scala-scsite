@@ -39,9 +39,9 @@ public class RequestHandler {
     }
 
     private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
-            .connectTimeout(Duration.ofSeconds(5L))
-            .writeTimeout(Duration.ofSeconds(5L))
-            .readTimeout(Duration.ofSeconds(5L))
+            .connectTimeout(Duration.ofSeconds(10L))
+            .writeTimeout(Duration.ofSeconds(10L))
+            .readTimeout(Duration.ofSeconds(10L))
             .build();
 
     static {

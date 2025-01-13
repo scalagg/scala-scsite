@@ -16,8 +16,11 @@ public class UUIDCache {
             .expireAfterWrite(15L, TimeUnit.MINUTES)
             .build(name -> {
                 RequestResponse response = RequestHandler.get("uuid/%s", name);
-                if (!response.wasSuccessful())
+                if (!response.wasSuccessful()) {
+                    System.out.println("Failed to get UUID for " + name);
+                    System.out.println(response);
                     return null;
+                }
 
                 JsonObject object = response.asObject();
                 return UUID.fromString(object.get("uuid").getAsString());

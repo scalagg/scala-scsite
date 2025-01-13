@@ -45,6 +45,7 @@ public class ProfileModel extends UUIDHolder {
     private final List<ForumThread> threads = new ArrayList<>();
     private final List<FriendModel> friends = new ArrayList<>();
     private final List<CommentModel> comments = new ArrayList<>();
+    private final List<NotificationModel> notifications = new ArrayList<>();
     private final Map<String, Boolean> permissions = new HashMap<>();
 
     private final List<LogModel> logs = new ArrayList<>();
@@ -73,11 +74,7 @@ public class ProfileModel extends UUIDHolder {
 //                : null;
 
 
-        if (CACHE.getCachedData().contains(uuid.toString())) {
-            this.currentServer = lastServer;
-        } else {
-            this.currentServer = null;
-        }
+        this.currentServer = CACHE.getCachedData().getOrDefault(uuid.toString(), null);
 
         this.rank = new RankModel(object.get("rank").getAsJsonObject());
 
@@ -150,6 +147,11 @@ public class ProfileModel extends UUIDHolder {
         if (object.has("stats") && !object.get("stats").isJsonNull()) {
             for (JsonElement element : object.get("stats").getAsJsonArray())
                 stats.add(new StatsModel(element.getAsJsonObject()));
+        }
+
+        if (object.has("notifications") && !object.get("notifications").isJsonNull()) {
+            for (JsonElement element : object.get("notifications").getAsJsonArray())
+                notifications.add(new NotificationModel(element.getAsJsonObject()));
         }
     }
 
@@ -264,25 +266,25 @@ public class ProfileModel extends UUIDHolder {
         return activeMute;
     }
 
-//    public NotificationModel getNotification(UUID uuid) {
-//        for (NotificationModel notification : notifications) {
-//            if (notification.getUuid().equals(uuid))
-//                return notification;
-//        }
-//
-//        return null;
-//    }
-//
-//    public int countUnreadNotifications() {
-//        int count = 0;
-//
-//        for (NotificationModel notification : notifications) {
-//            if (!notification.isRead())
-//                count++;
-//        }
-//
-//        return count;
-//    }
+    public NotificationModel getNotification(UUID uuid) {
+        for (NotificationModel notification : notifications) {
+            if (notification.getUuid().equals(uuid))
+                return notification;
+        }
+
+        return null;
+    }
+
+    public int countUnreadNotifications() {
+        int count = 0;
+
+        for (NotificationModel notification : notifications) {
+            if (!notification.isRead())
+                count++;
+        }
+
+        return count;
+    }
 
     /**
      * This is lazily loaded due to it being fairly expensive on the backend
