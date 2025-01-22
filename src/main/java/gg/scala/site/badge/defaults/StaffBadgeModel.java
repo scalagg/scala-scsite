@@ -15,7 +15,7 @@ public class StaffBadgeModel extends BadgeModel {
 
     @Override
     public boolean canApply(ProfileModel profile) {
-        return profile.getRank().getWeight() >= 3000;
+        return profile.getRank().getWeight() >= 1550;
     }
 
 }

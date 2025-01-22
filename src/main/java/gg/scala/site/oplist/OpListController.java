@@ -27,7 +27,7 @@ public class OpListController {
         if (profile == null)
             return ErrorUtil.loginRedirect("/admin/oplist");
 
-        if (!profile.hasPermission("trusted"))
+        if (!profile.hasPermission("website.admin"))
             return ErrorUtil.noPerms("You do not have permission to view this page.");
 
         ModelAndView view = new ModelAndView("panel/oplist");
@@ -56,7 +56,7 @@ public class OpListController {
         if (profile == null)
             return ErrorUtil.loginRedirect("admin/oplist");
 
-        if (!profile.hasPermission("trusted"))
+        if (!profile.hasPermission("website.admin"))
             return ErrorUtil.noPerms("You do not have permission to view this page.");
 
         UUID playerId = UUIDCache.getUuid(name);
@@ -75,7 +75,7 @@ public class OpListController {
         if (profile == null)
             return ErrorUtil.loginRedirect("admin/oplist");
 
-        if (!profile.hasPermission("trusted"))
+        if (!profile.hasPermission("website.admin"))
             return ErrorUtil.noPerms("You do not have permission to view this page.");
 
         UUID playerId = UUIDCache.getUuid(name);

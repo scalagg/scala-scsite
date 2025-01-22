@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="@{default}"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Admin Panel</title>
+    <title>Staff Panel</title>
 </head>
 <body>
 <div layout:fragment="content" th:if="${sessionProfile != null && sessionProfile.hasPermission('website.admin.view')}">
@@ -15,7 +15,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Admin Panel</li>
+                        <li class="breadcrumb-item active" aria-current="page">Staff Panel</li>
                     </ol>
                 </nav>
             </div>
