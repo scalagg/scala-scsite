@@ -31,7 +31,7 @@ public class MiscController {
     }
     @RequestMapping("/rules")
     public ModelAndView rules() {
-        return new ModelAndView("redirect:http://solara.gg/thread/nqmfsfuc");
+        return new ModelAndView("redirect:http://scala.gg/thread/nqmfsfuc");
     }
     @RequestMapping("/forum-rules")
     public ModelAndView forumRules() {

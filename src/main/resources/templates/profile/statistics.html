@@ -7,8 +7,8 @@
 <body>
 <div th:fragment="statistics">
     <div class="stat-grid two">
-        <!--/*@thymesVar id="profile" type="gg.solara.site.model.profile.ProfileModel"*/-->
-        <!--/*@thymesVar id="stat" type="gg.solara.site.model.profile.data.StatsModel"*/-->
+        <!--/*@thymesVar id="profile" type="gg.scala.site.model.profile.ProfileModel"*/-->
+        <!--/*@thymesVar id="stat" type="gg.scala.site.model.profile.data.StatsModel"*/-->
         <div class="card"
              th:each="stat: ${profile.getStats()}"
              th:with="serverName=${stat.getServerName()}">
@@ -33,8 +33,8 @@
     </div>
 
     <div class="card card-feed">
-        <!--/*@thymesVar id="profile" type="gg.solara.site.model.profile.ProfileModel"*/-->
-        <!--/*@thymesVar id="sessionProfile" type="gg.solara.site.model.profile.ProfileModel"*/-->
+        <!--/*@thymesVar id="profile" type="gg.scala.site.model.profile.ProfileModel"*/-->
+        <!--/*@thymesVar id="sessionProfile" type="gg.scala.site.model.profile.ProfileModel"*/-->
         <div class="card-feed-action" th:if="${profile.getCommentStatus().canInteract(profile, sessionProfile)}">
             <div class="avatar" th:if="${sessionProfile != null}">
                 <img th:src="${'https://skins.mcstats.com/body/side/' + profile.getUuid().toString()}">

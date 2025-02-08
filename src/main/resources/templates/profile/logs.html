@@ -15,7 +15,7 @@
                     <div class="avatar xm log">
                         <img th:src="${'https://skins.mcstats.com/body/front/' + profile.getUuid()}"/>
                     </div>
-                    <!--/*@thymesVar id="log" type="gg.solara.site.model.profile.log.LogModel"*/-->
+                    <!--/*@thymesVar id="log" type="gg.scala.site.model.profile.log.LogModel"*/-->
                     <div class="ms-lg-3 me-auto">
                         <div class="fw-bold">
                             <a th:style="${'color: ' + log.getAddedByWebColor()}" th:text="${log.getAddedByName()}"></a>

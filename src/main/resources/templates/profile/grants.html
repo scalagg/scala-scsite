@@ -19,12 +19,6 @@
                         <div class="fw-bold">
                             <a th:style="${'color: ' + grant.addedByWebColor}"
                                th:text="${grant.addedByName}"></a>
-                            <a th:text="'granted on '"
-                               style="color: silver"></a>
-                            <a th:style="${'color: var(--primaryColor)'}"
-                               th:text="${grant.addedAt}"></a>
-                            <a th:text="' for '"
-                               style="color: silver"></a>
                             <a th:text="${grant.addedReason}"
                                style="color: red"></a>
                             <a th:if="${grant.getEnd() != -1}"

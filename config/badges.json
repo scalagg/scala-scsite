@@ -1,10 +1,108 @@
 {
   "badges": [
     {
-      "id": "developer",
-      "name": "Developer",
-      "description": "This user is a developer",
-      "icon": "developer.png",
+      "id": "admin",
+      "name": "Admin",
+      "description": "This user is an admin.",
+      "icon": "admin.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "beta",
+      "name": "Beta",
+      "description": "This user is a beta tester.",
+      "icon": "beta.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "booster",
+      "name": "Booster",
+      "description": "This user is a booster.",
+      "icon": "booster.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "bot",
+      "name": "Bot",
+      "description": "This user is a bot.",
+      "icon": "bot.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "builder",
+      "name": "Builder",
+      "description": "This user is a builder.",
+      "icon": "builder.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "creator",
+      "name": "Creator",
+      "description": "This user is a creator.",
+      "icon": "creator.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "designer",
+      "name": "Designer",
+      "description": "This user is a designer.",
+      "icon": "designer.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "donator",
+      "name": "Donator",
+      "description": "This user is a donator.",
+      "icon": "donator.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "editor",
+      "name": "Editor",
+      "description": "This user is an editor.",
+      "icon": "editor.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "management",
+      "name": "Management",
+      "description": "This user is part of management.",
+      "icon": "management.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "media-streamer",
+      "name": "Media Streamer",
+      "description": "This user is a media streamer.",
+      "icon": "media-streamer.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "member",
+      "name": "Member",
+      "description": "This user is a member.",
+      "icon": "member.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "moderator",
+      "name": "Moderator",
+      "description": "This user is a moderator.",
+      "icon": "moderator.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "owner",
+      "name": "Owner",
+      "description": "This user is the owner.",
+      "icon": "owner.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "partner",
+      "name": "Partner",
+      "description": "This user is a partner.",
+      "icon": "partner.png",
       "clazz": "gg.scala.site.badge.BadgeModel"
     },
     {
@@ -12,7 +110,42 @@
       "name": "Staff Member",
       "description": "This user is a staff member.",
       "icon": "staff.png",
-      "clazz": "gg.scala.site.badge.defaults.StaffBadgeModel"
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "trainee",
+      "name": "Trainee",
+      "description": "This user is a trainee.",
+      "icon": "trainee.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "twitchpartner",
+      "name": "Twitch Partner",
+      "description": "This user is a Twitch partner.",
+      "icon": "twitchpartner.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "verified",
+      "name": "Verified",
+      "description": "This user is verified.",
+      "icon": "verified.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "vip",
+      "name": "VIP",
+      "description": "This user is a VIP.",
+      "icon": "vip.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
+    },
+    {
+      "id": "viral",
+      "name": "Viral",
+      "description": "This user is viral.",
+      "icon": "viral.png",
+      "clazz": "gg.scala.site.badge.BadgeModel"
     }
   ]
 }

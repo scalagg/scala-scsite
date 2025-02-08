@@ -24,7 +24,7 @@ public class GlobalControllerAdvice {
             new NavItem("Leaderboard", "/leaderboard"),
             new NavItem("Support", "/support"),
             new NavItem("Staff", "/staff"),
-            new NavItem("Store", "https://store.solara.gg")
+            new NavItem("Store", "https://store.scala.gg")
     );
 
     @ModelAttribute
