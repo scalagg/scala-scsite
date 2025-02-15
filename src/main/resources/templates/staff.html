@@ -42,7 +42,7 @@
                         </a>
 
                         <div class="staff-banner" th:style="${'background-color: ' + rank.getWebColor()}">
-                            <span th:text="${rank.getName()}"></span>
+                            <span th:text="${rank.getDisplayName() != null ? rank.getDisplayName() : rank.getName()}"></span>
                         </div>
                     </div>
                 </div>
