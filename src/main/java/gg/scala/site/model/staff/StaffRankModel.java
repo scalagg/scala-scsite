@@ -25,7 +25,6 @@ public class StaffRankModel {
         this.displayName = object.get("displayName").isJsonNull() ? null : object.get("displayName").getAsString();
         this.weight = object.get("weight").getAsInt();
         this.webColor = ColorUtil.getHexFromMinecraft(object.get("color").getAsString());
-        System.out.println(displayName);
 
         for (JsonElement element : object.get("members").getAsJsonArray()) {
             StaffMember member = new StaffMember(element.getAsJsonObject());

@@ -26,7 +26,7 @@
         <div th:each="rank: ${ranks}">
             <div class="staff-title alert alert-light"
                  th:style="${'color: ' + rank.getWebColor()}"
-                 th:text="${rank.getName()}">
+                 th:text="${rank.getDisplayName() != null ? rank.getDisplayName() : rank.getName()}">
             </div>
 
             <div id="staff" class="mb-5">

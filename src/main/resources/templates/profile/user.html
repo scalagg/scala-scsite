@@ -19,7 +19,7 @@
                     <div class="username" th:text="${profile.getName()}"></div>
 
                     <div class="rank" th:style="${'color: ' + profile.getRank().getWebColor()}">
-                        <span th:text="${profile.getRank().getName()}"></span>
+                        <span th:text="${profile.getRank().getDisplayName() != null ? profile.getRank().getDisplayName() : profile.getRank().getName()}"></span>
                     </div>
 
                     <div class="user-small-meta">
