@@ -22,9 +22,10 @@ public class StaffRankModel {
     public StaffRankModel(JsonObject object) {
         this.uuid = UUID.fromString(object.get("uuid").getAsString());
         this.name = object.get("name").getAsString();
-        this.displayName = object.get("displayName").getAsString();
+        this.displayName = object.get("displayName").isJsonNull() ? null : object.get("displayName").getAsString();
         this.weight = object.get("weight").getAsInt();
         this.webColor = ColorUtil.getHexFromMinecraft(object.get("color").getAsString());
+        System.out.println(displayName);
 
         for (JsonElement element : object.get("members").getAsJsonArray()) {
             StaffMember member = new StaffMember(element.getAsJsonObject());
