@@ -112,6 +112,7 @@
     </dependencies>
 
     <build>
+        <finalName>website-wl</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
