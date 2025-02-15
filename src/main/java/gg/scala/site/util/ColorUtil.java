@@ -2,7 +2,7 @@ package gg.scala.site.util;
 
 public class ColorUtil {
     public static String getHexFromMinecraft(String colorCode) {
-        String stripped = colorCode.substring(1);
+        String stripped = colorCode.substring(1, 2);
         return switch (stripped) {
             case "0" -> "#000000";
             case "1" -> "#0000AA";
