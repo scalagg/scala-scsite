@@ -26,7 +26,7 @@ public class RankModel {
     public RankModel(JsonObject object) {
         this.id = UUID.fromString(object.get("uuid").getAsString());
         this.name = object.get("name").getAsString();
-        this.displayName = object.get("displayName").getAsString();
+        this.displayName = object.get("displayName").isJsonNull() ? null : object.get("displayName").getAsString();
         this.prefix = object.get("prefix").getAsString();
         this.color = object.get("color").getAsString();
         this.chatColor = "&c"; // TODO: Implement
