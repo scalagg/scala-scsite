@@ -112,7 +112,7 @@
     </dependencies>
 
     <build>
-        <finalName>website-wl</finalName>
+        <finalName>scala-scsite</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
