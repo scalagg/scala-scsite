@@ -362,113 +362,118 @@ h6.dropdown-header {
 }
 
 #foot {
-    background: #101010;
-    padding: 20px 0;
-    color: #676767;
+    background-color: #1d1d1d;
+    padding: 60px 0 20px;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.left-section {
+    flex: 1;
+}
+
+.left-section .logo img {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.copyright {
+    color: #8b8b8b;
     font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
-#foot .container {
+
+.social-links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    gap: 15px;
 }
-#foot .left-section {
+
+.social-links a {
+    color: #8b8b8b;
+    font-size: 20px;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--primaryColor);
+}
+
+.right-section {
+    flex: 2;
+}
+
+.footer-links {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    justify-content: space-around;
+    gap: 40px;
 }
-#foot .left-section .logo img {
-    width: 100px;
-    height: auto;
-    transition: all 0.3s ease;
-}
-#foot .footer-content {
+
+.links-column {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 }
-#foot {
-    background: #101010;
-    padding: 20px 0;
-    color: #676767;
+
+.links-column h5 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.links-column a {
+    color: #8b8b8b;
     font-size: 14px;
-}
-
-#foot .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-#foot .footer-content {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#foot .left-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-#foot .left-section .logo img {
-    width: 100px;
-    height: auto;
-    transition: all 0.3s ease;
-}
-
-#foot .left-section .copyright {
-    color: #5e5e5e;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-#foot .left-section .copyright strong {
-    color: #8f8f8f;
-}
-
-#foot .right-section {
-    display: flex;
-    gap: 20px;
-}
-
-#foot .right-section a {
-    text-transform: uppercase;
-    color: #676767;
-    font-weight: bold;
     text-decoration: none;
-    transition: color 0.3s ease;
+    margin-bottom: 10px;
+    transition: color 0.2s ease;
 }
 
-#foot .right-section a:hover {
-    color: white;
+.links-column a:hover {
+    color: var(--primaryColor);
+}
+
+.footer-bottom {
+    border-top: 1px solid #333333;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.watermark {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.watermark:hover {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
-    #foot .container {
+    .footer-content {
         flex-direction: column;
         text-align: center;
     }
 
-    #foot .footer-content {
-        flex-direction: column;
-        gap: 15px;
+    .social-links {
+        justify-content: center;
     }
 
-    #foot .right-section {
-        flex-direction: row;
-        gap: 15px;
+    .footer-links {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .links-column {
+        align-items: center;
     }
 }
+
 #foot .top {
     display: flex;
     align-items: center;
@@ -2538,7 +2543,7 @@ body.dark {
 }
 
 .dark #foot {
-    background: #00000054 !important;
+    background: #1d1d1d;
 }
 
 .dark .card-feed-meta {
@@ -2684,7 +2689,7 @@ body.dark {
     color: white;
 }
 
-/* clears the ‘X’ from Internet Explorer */
+/* clears the 'X' from Internet Explorer */
 input[type=search]::-ms-clear {
     display: none;
     width: 0;
@@ -2697,7 +2702,7 @@ input[type=search]::-ms-reveal {
     height: 0;
 }
 
-/* clears the ‘X’ from Chrome */
+/* clears the 'X' from Chrome */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
