@@ -16,9 +16,9 @@ public class ScalaPracticeLeaderboard implements LeaderboardType {
     private static final String END_KEY = ":global:final";
 
     private static final String[] STAT_TYPES = new String[] {
-            "UnrankedWinStreak",
-            "ELO",
-            "UnrankedWins"
+//            "UnrankedWinStreak",
+            "ELO"
+//            "UnrankedWins"
 //            "Archer",
 //            "Nodebuff",
 //            "Bedfight",
@@ -65,7 +65,7 @@ public class ScalaPracticeLeaderboard implements LeaderboardType {
                 entryModels.add(new LeaderboardEntryModel(
                         UUID.fromString(entry.getElement()),
                         entry.getScore() + "",
-                        ColorUtil.getHexFromMinecraft("&c"), // TODO: do this!
+                        ColorUtil.getHexFromMinecraft("&6"), // TODO: do this!
                         UUIDCache.getName(UUID.fromString(entry.getElement()))
                 ));
                 i++;
