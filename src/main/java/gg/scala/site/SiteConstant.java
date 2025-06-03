@@ -12,7 +12,7 @@ import java.time.ZoneId;
 public class SiteConstant {
 
     public static final boolean API_DEBUG = true;
-    public static final String API_HOST = "http://100.125.41.103:8081/";
+    public static final String API_HOST = "http://172.18.0.1:8081/";
     public static final String API_KEY = "Mmvb500e9cZShvMgxnI44XGjyzIXOX5a";
 
     public static final boolean MAINTENANCE_MODE = false;

@@ -2,6 +2,7 @@ package gg.scala.site.controller.support;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import gg.scala.site.SiteConstant;
 import gg.scala.site.util.ErrorUtil;
 import gg.scala.site.util.PopupUtil;
 import gg.scala.site.util.SessionUtil;
@@ -217,14 +218,15 @@ public class SupportController {
             return new ModelAndView("redirect:/ticket/" + id);
         }
 
-        if (content.replaceAll(" ", "").isBlank()) {
+        String sanitizedContent = SiteConstant.POLICY_FACTORY.sanitize(content);
+        if (sanitizedContent.replaceAll(" ", "").isBlank()) {
             PopupUtil.error(request.getSession(), "You cannot send an empty reply");
             return new ModelAndView("redirect:/ticket/" + id);
         }
 
         JsonObject body = new JsonObject();
         body.addProperty("id", StringUtil.generateId(5));
-        body.addProperty("body", content);
+        body.addProperty("body", sanitizedContent);
         body.addProperty("author", profile.getUuid().toString());
         body.addProperty("createdAt", System.currentTimeMillis());
 

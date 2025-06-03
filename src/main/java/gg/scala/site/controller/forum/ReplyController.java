@@ -1,6 +1,7 @@
 package gg.scala.site.controller.forum;
 
 import com.google.gson.JsonObject;
+import gg.scala.site.SiteConstant;
 import gg.scala.site.model.replies.ReplyModel;
 import gg.scala.site.util.ErrorUtil;
 import gg.scala.site.util.PopupUtil;
@@ -44,7 +45,8 @@ public class ReplyController {
             return new ModelAndView("redirect:/thread/" + threadId);
         }
 
-        if (content.isBlank()) {
+        String sanitizedContent = SiteConstant.POLICY_FACTORY.sanitize(content);
+        if (sanitizedContent.isBlank()) {
             PopupUtil.error(request.getSession(), "The reply cannot be empty.");
             return new ModelAndView("redirect:/thread/" + threadId);
         }
@@ -53,7 +55,7 @@ public class ReplyController {
         JsonObject body = new JsonObject();
 
         body.addProperty("uuid", id.toString());
-        body.addProperty("comment", content);
+        body.addProperty("comment", sanitizedContent);
         body.addProperty("author", profile.getUuid().toString());
         if(replyId != null)
             body.addProperty("parentReplyId", replyId);
