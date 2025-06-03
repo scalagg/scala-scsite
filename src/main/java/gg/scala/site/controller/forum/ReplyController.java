@@ -45,7 +45,9 @@ public class ReplyController {
             return new ModelAndView("redirect:/thread/" + threadId);
         }
 
-        String sanitizedContent = SiteConstant.POLICY_FACTORY.sanitize(content);
+        // Convert newlines to HTML line breaks before sanitizing
+        String contentWithBreaks = content.replaceAll("\\r?\\n", "<br>");
+        String sanitizedContent = SiteConstant.POLICY_FACTORY.sanitize(contentWithBreaks);
         if (sanitizedContent.isBlank()) {
             PopupUtil.error(request.getSession(), "The reply cannot be empty.");
             return new ModelAndView("redirect:/thread/" + threadId);

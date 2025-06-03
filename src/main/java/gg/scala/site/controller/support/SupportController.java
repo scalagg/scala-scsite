@@ -218,7 +218,9 @@ public class SupportController {
             return new ModelAndView("redirect:/ticket/" + id);
         }
 
-        String sanitizedContent = SiteConstant.POLICY_FACTORY.sanitize(content);
+        // Convert newlines to HTML line breaks before sanitizing
+        String contentWithBreaks = content.replaceAll("\\r?\\n", "<br>");
+        String sanitizedContent = SiteConstant.POLICY_FACTORY.sanitize(contentWithBreaks);
         if (sanitizedContent.replaceAll(" ", "").isBlank()) {
             PopupUtil.error(request.getSession(), "You cannot send an empty reply");
             return new ModelAndView("redirect:/ticket/" + id);

@@ -185,7 +185,7 @@
                                 <img th:src="${'https://skins.mcstats.com/bust/' + reply.getAuthor()}"/>
                             </div>
                             <div class="ms-lg-3 me-auto">
-                                <div class="fw-bold" th:text="${reply.getComment()}"></div>
+                                <div class="fw-bold" th:utext="${reply.getComment()}"></div>
                                 <div class="card-feed-meta">
                                     <a th:href="${'/u/' + reply.getAuthorName()}"
                                        th:text="${reply.getAuthorName()}"

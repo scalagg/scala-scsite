@@ -283,7 +283,7 @@
                         </div>
 
                         <div class="ms-lg-3 me-auto">
-                            <div class="fw-bold" th:text="${reply.getBody()}"></div>
+                            <div class="fw-bold" th:utext="${reply.getBody()}"></div>
                             <div class="card-feed-meta">
                                 <a th:href="${'/u/' + reply.getAuthorName()}" class="admin"
                                    th:style="${'color: ' + reply.getAuthorWebColor() + ' !important'}"
